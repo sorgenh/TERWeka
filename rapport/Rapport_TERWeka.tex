@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\usepackage[francais]{babel}
+\def\printlandscape{\special{landscape}}    % Works with dvips.
+%\usepackage{pstricks,pst-node,pst-tree}
+%\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage{fancybox} % for shadow and Bitemize
+\usepackage{alltt}
+\usepackage{graphicx}
+\usepackage{caption} 
+
+
+%\usepackage{epsfig}
+\usepackage{fullpage}
+%\usepackage{fancyhdr}
+%\usepackage{moreverb}
+%\usepackage{xspace}
+\usepackage[colorlinks,hyperindex,bookmarks,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{array,multirow,makecell}
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+\usepackage{wrapfig}
+\usepackage{epsf}
+\usepackage{framed}
+
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\definecolor{Zgris}{rgb}{0.87,0.85,0.85}
+
+\newsavebox{\BBbox}
+
+\newenvironment{DDbox}[1]{
+	\begin{lrbox}{\BBbox}\begin{minipage}{\linewidth}}
+		{\end{minipage}\end{lrbox}\noindent\colorbox{Zgris}{\usebox{\BBbox}} \\
+		[.5cm]}
+
+\title{Rapport du TER GMIN401 :\\ \textbf{Intégration et optimisation d’algorithmes de classifications supervisées pour Weka}}
+
+\author{Par : ALIJATE Mehdi - NEGROS Hadrien - TURKI Batoul}
+
+\date{31 Janvier 2014}
+
+         
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+	
+Ce sujet vise à intégrer et à optimiser des algorithmes de classifications supervisées de document dans la suite logiciel WEKA. Ces algorithmes sont issus de travaux de recherche menés récemment au sein du LIRMM.
+\end{abstract}
+
+\newpage 
+%-----------------------------------------------------------
+\section{Introduction}\label{sec:intro}
+//TODO
+
+%-----------------------------------------------------------
+
+\section{Exploration de WEKA}
+
+\subsection{L'API Weka/Sources avec Eclipse}
+//TODO
+
+\subsection{L'utilisation des classes}
+//TODO
+\subsection{Ajout d'un algorithme dans Weka}
+//TODO
+%-----------------------------------------------------------
+
+\section{Développement des différentes classes}
+
+\subsection{Méthodologie}
+//TODO
+\subsection{Extension de Naive Bayes}
+//TODO
+\subsection{Extension de Class-Feature-Centroide }
+//TODO
+%-----------------------------------------------------------
+
+
+
+\section{Intégration et tests}
+\subsection{Intégration dans l'écosystème de Weka}
+//TODO
+\subsection{Tests}
+//TODO
+\subsection{Résultats}
+//TODO
+
+%-----------------------------------------------------------
+
+
+\section{Discussion et Conclusion }
+//TODO
+%-----------------------------------------------------------
+
+\newpage
+\section{Sources}
+//TODO
+
+%-----------------------------------------------------------
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% coding: utf-8
+%%% End:
