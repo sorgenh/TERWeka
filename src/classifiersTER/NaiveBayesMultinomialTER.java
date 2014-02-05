@@ -1,4 +1,4 @@
-package classifiersTER;
+
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -60,7 +60,6 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 		// remove instances with missing class
 		instances = new Instances(instances);
 		instances.deleteWithMissingClass();
-
 		m_headerInfo = new Instances(instances, 0);
 		m_numClasses = instances.numClasses();
 		m_numAttributes = instances.numAttributes();
@@ -96,6 +95,8 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 		{
 			nbOfClassesContainingWord[c] = 0;
 		}
+		
+		
 		HashMap<Integer,HashSet<Integer>> classesGivenWord = new HashMap<Integer,HashSet<Integer>>();
 		for(int att = 0; att<m_numAttributes; att++)
 		{
@@ -162,7 +163,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 
 			ndoc++;
 		}
-		//On a toute les valeurs necessaire spour les weightings normalement
+		//On a toute les valeurs necessaires pour les weightings normalement
 		//Premiere ponderation:
 		double[][] probofWordGivenClass = new double[m_numClasses][]; 
 		int nbClassContaningWord;
@@ -179,19 +180,67 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 				probofWordGivenClass[j][i] = (nbOfWordGivenClass[j][i] / wordsPerClass[j]) * log ;
 			}
 		}
+		//Deuxime ponderation:
+		double[][] probofDocsGivenClass = new double[m_numClasses][]; 
+		
+		for(int j = 0; j<m_numClasses; j++)
+		{
+			probofDocsGivenClass[j] = new double[m_numAttributes];
+			for(int i = 0; i<m_numAttributes; i++)
+			{
+				if(classesGivenWord.get(i).contains(j))
+					nbClassContaningWord = classesGivenWord.get(i).size()-1;
+				else
+					nbClassContaningWord = classesGivenWord.get(i).size();
+				double log = (Math.log(((double)m_numClasses)/((double)(nbClassContaningWord+1)))/Math.log(2));
+				probofDocsGivenClass[j][i] = (nbOfDocsContainingWordGivenClass[j][i] / nbDocsPerClass[j]) * log ;
+			}
+		}
+		//Troisime ponderation:
+		double[][] probofWordsGivenDocs = new double[m_numClasses][]; 
+	    double numDocs = instances.sumOfWeights() + m_numClasses;
+		int nbDocsContaningWord;
+		for(int j = 0; j<m_numClasses; j++)
+		{
+			probofWordsGivenDocs[j] = new double[m_numAttributes];
+			for(int i = 0; i<m_numAttributes; i++)
+			{
+				if(classesGivenWord.get(i).contains(j))
+					nbDocsContaningWord = docsGivenWord.get(i).size()-1;
+				else
+					nbDocsContaningWord = docsGivenWord.get(i).size();
+				double log_2 = (Math.log(((double)numDocs)/((double)(nbDocsContaningWord+1)))/Math.log(2));
+				probofWordsGivenDocs[j][i] = (nbOfWordGivenClass[j][i] / wordsPerClass[j]) * log_2 ;
+			}
+		}
+		//Quatrime ponderation:
+		double[][] probofDocsGivenDocs = new double[m_numClasses][]; 
+	 	
+		for(int j = 0; j<m_numClasses; j++)
+		{
+			probofDocsGivenDocs[j] = new double[m_numAttributes];
+			for(int i = 0; i<m_numAttributes; i++)
+			{
+				if(classesGivenWord.get(i).contains(j))
+					nbDocsContaningWord = docsGivenWord.get(i).size()-1;
+				else
+					nbDocsContaningWord = docsGivenWord.get(i).size();
+				double log_2 = (Math.log(((double)numDocs)/((double)(nbDocsContaningWord+1)))/Math.log(2));
+				probofDocsGivenDocs[j][i] = (nbOfDocsContainingWordGivenClass[j][i] / nbDocsPerClass[j]) * log_2 ;
+			}
+		}
 		
 		 /*
 	      calculating Pr(H)
 	      NOTE: Laplace estimator introduced in case a class does not get mentioned in the set of 
 	      training instances
 	    */
-	    final double numDocs = instances.sumOfWeights() + m_numClasses;
 	    m_probOfClass = new double[m_numClasses];
 	    for(int h=0; h<m_numClasses; h++)
 	      m_probOfClass[h] = (double)(nbDocsPerClass[h] + 1)/numDocs; 
 		
 		displayWeightings(System.out,instances,wordsPerClass,nbOfWordGivenClass,nbOfDocsContainingWordGivenClass,classesGivenWord
-				,docsGivenClass,docsGivenWord,probofWordGivenClass);
+				,docsGivenClass,docsGivenWord,probofWordGivenClass,probofDocsGivenClass,probofWordsGivenDocs,probofDocsGivenDocs);
 
 
 
@@ -199,7 +248,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 	private void displayWeightings(PrintStream out, Instances instances, double[] wordsPerClass,
 			double[][] nbOfWordGivenClass,
 			double[][] nbOfDocsContainingWordGivenClass,
-			HashMap<Integer, HashSet<Integer>> classesGivenWord, HashMap<Integer, HashSet<Integer>> docsGivenClass, HashMap<Integer, HashSet<Integer>> docsGivenWord, double[][] probofWordGivenClass) {
+			HashMap<Integer, HashSet<Integer>> classesGivenWord, HashMap<Integer, HashSet<Integer>> docsGivenClass, HashMap<Integer, HashSet<Integer>> docsGivenWord, double[][] probofWordGivenClass,double[][]probofDocsGivenClass,double[][] probofWordsGivenDocs,double[][] probofDocsGivenDocs) {
 		System.out.println("Words Per Class:\n");
 		for(int c = 0; c<m_numClasses; c++)
 		{
@@ -256,7 +305,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 		}
 		
 		
-		out.println("\nProb of Words given Class (Wij):\n");
+		out.println("\nPondŽration 1 :Prob of Words given Class (Wij):\n");
 		for(int c = 0; c<m_numClasses; c++)
 		{
 			out.println(instances.attribute(instances.classIndex()).value(c)); 
@@ -266,7 +315,36 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 
 			}
 		}
+		out.println("\nPondŽration 2 :Prob of Docs given Class (Wij):\n");
+		for(int c = 0; c<m_numClasses; c++)
+		{
+			out.println(instances.attribute(instances.classIndex()).value(c)); 
+			for(int att = 0; att<m_numAttributes; att++)
+			{
+				out.println("\t"+instances.attribute(att).name() +" : " +probofDocsGivenClass[c][att]);
 
+			}
+		}
+		out.println("\nPondŽration 3 :Prob of Words given Docs (Wij):\n");
+		for(int c = 0; c<m_numClasses; c++)
+		{
+			out.println(instances.attribute(instances.classIndex()).value(c)); 
+			for(int att = 0; att<m_numAttributes; att++)
+			{
+				out.println("\t"+instances.attribute(att).name() +" : " +probofWordsGivenDocs[c][att]);
+
+			}
+		}
+		out.println("\nPondŽration 4 : Prob of Docs given Docs (Wij):\n");
+		for(int c = 0; c<m_numClasses; c++)
+		{
+			out.println(instances.attribute(instances.classIndex()).value(c)); 
+			for(int att = 0; att<m_numAttributes; att++)
+			{
+				out.println("\t"+instances.attribute(att).name() +" : " +probofDocsGivenDocs[c][att]);
+
+			}
+		}
 		
 		
 	}
@@ -277,17 +355,18 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 	 * @throws Exception 
 	 */
 	public static void main(String [] argv) {
-//		System.out.println(Math.log10(3./2.));
-//		NaiveBayesMultinomialTER test = new NaiveBayesMultinomialTER();
-//		try {
-//			DataSource ds = new DataSource(argv[1]);
-//			Instances i = ds.getDataSet();
-//			i.setClassIndex(i.numAttributes()-1);
-//			test.buildClassifier(i);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		runClassifier(new NaiveBayesMultinomialTER(), argv);
+  
+
+	NaiveBayesMultinomialTER test = new NaiveBayesMultinomialTER();
+	try {
+		DataSource ds = new DataSource(argv[1]);
+		Instances i = ds.getDataSet();
+		i.setClassIndex(i.numAttributes()-1);
+		test.buildClassifier(i);
+	} catch (Exception e) {
+		e.printStackTrace();
+		}
+	//	runClassifier(new NaiveBayesMultinomialTER(), argv);
 	}
 
 }
