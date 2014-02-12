@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.26pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Organisation}{4}{0}{2}
+\beamer@sectionintoc {3}{Travail effectu\IeC {\'e}}{5}{0}{3}
+\beamer@sectionintoc {4}{D\IeC {\'e}monstration}{6}{0}{4}
+\beamer@sectionintoc {5}{Next step}{7}{0}{5}
+\beamer@sectionintoc {6}{Discussion}{8}{0}{6}
