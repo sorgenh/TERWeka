@@ -1,9 +1,15 @@
 //package classifiersTER;
-package weka.classifiers.bayes
+//package weka.classifiers.bayes;
 
 import weka.core.Instance;
 
 public class CFCTERab extends NaiveBayesMultinomialTERab {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3765857581531315570L;
+
 
 	public double [] distributionForInstance(Instance instance) throws Exception 
 	{

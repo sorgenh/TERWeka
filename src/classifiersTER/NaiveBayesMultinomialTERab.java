@@ -1,5 +1,5 @@
 //package classifiersTER;
-package weka.classifiers.bayes
+//package weka.classifiers.bayes;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -13,30 +13,33 @@ import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Option;
 import weka.core.OptionHandler;
+import weka.core.TechnicalInformation;
 import weka.core.Utils;
+import weka.core.TechnicalInformation.Field;
+import weka.core.TechnicalInformation.Type;
 
 /**
 <!-- globalinfo-start -->
- * Class for building and using a multinomial Naive Bayes classifier with the application of different weightings developped at LIRMM <br/>
+ * Class for building and using a multinomial Naive Bayes classifier with the application of four different weightings developed at LIRMM <br/>
  * <br/>
- * **Reference vers l'article**<br/>
  * <br/>
  * The equations for this weightings:<br/>
  * <br/>
- *\\TODO<br/>
+ *The weightings for this classifier can be selected from the properties, and are calculated as follows :<br/>
+ *Weighting 1 : W_Tf-Class[ij] = intra-classe(Tf)[ij] × inter-classe(class)[ij] <br/>
+ *Weighting 2 : W_Df-Class[ij] = intra-classe(Df)[ij] × inter-classe(class)[ij] <br/>
+ *Weighting 3 : W_Tf-Doc[ij] = intra-classe(Tf)[ij] x inter-classe(Doc)[ij]<br/>
+ *Weighting 4 : W_Df-Doc[ij] = intra-classe(Df)[ij] x inter-classe(Doc)[ij] <br/>
+ *where intra-classe(Tf)[ij] = [(number of occurrences of the word i in the class j)/(the total number of words in class j)]+1 <br/>
+ *where intra-classe(Df)[ij] = [(number of documents containing the word i in the class j)/(the total number of documents in class j)]+1 <br/>
+ *where inter-classe(class)[ij] = Log2[(number of classes excluding class j)+1 / (the total number of classes exluding class j containing the word i)+1] <br/>
+ *where inter-classe(Doc)[ij] = Log2[(number of documents out of class j)+1 / (the total number of documents out of class j containing the word i)+1] <br/>
+ *where j is a class and i is a word <br/>
  * <br/>
  * 
  * <p/>
 <!-- globalinfo-end -->
- *
-<!-- technical-bibtex-start -->
- * BibTeX:
- * <pre>
- * \\TODO
- * }
- * </pre>
- * <p/>
-<!-- technical-bibtex-end -->
+
  *
 <!-- options-start -->
  * Valid options are: <p/>
@@ -62,7 +65,35 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 
 	/** for serialization */
 	private static final long serialVersionUID = 1986672163986255572L;
+	  public String globalInfo() {
+		    return 
+		        "Class for building and using a multinomial Naive Bayes classifier with the application of four different weightings developped at LIRMM. "
+		      + "For more information see,\n\n"
+		      + getTechnicalInformation().toString() +"\n"
+		      + "The weightings for this classifier can be selected from the properties, and are calculated as follows :\n\n"
+		      + "Weighting 1 : W_Tf-Class[ij] = intra-classe(Tf)[ij] × inter-classe(class)[ij] \n\n"
+		      + "Weighting 2 : W_Df-Class[ij] = intra-classe(Df)[ij] × inter-classe(class)[ij] \n\n"
+		      + "Weighting 3 : W_Tf-Doc[ij] = intra-classe(Tf)[ij] x inter-classe(Doc)[ij]\n\n"
+		      + "Weighting 4 : W_Df-Doc[ij] = intra-classe(Df)[ij] x inter-classe(Doc)[ij] \n\n"
+		      + "where intra-classe(Tf)[ij] = [(number of occurrences of the word i in the class j)+1/(the total number of words in class j)+1] \n\n"
+		      + "where intra-classe(Df)[ij] = [(number of documents containing the word i in the class j)+1/(the total number of documents in class j)+1] \n\n"
+		      + "where inter-classe(class)[ij] = Log2[(number of classes excluding class j)+1 / (the total number of classes exluding class j containing the word i)+1] \n\n"
+		      + "where inter-classe(Doc)[ij] = Log2[(number of documents out of class j)+1 / (the total number of documents out of class j containing the word i)+1]\n\n"
+		      + "where j is a class and i is a word.";
+		  } 
+		 
 
+		  public TechnicalInformation getTechnicalInformation() {
+			    TechnicalInformation 	result;
+			    
+			    result = new TechnicalInformation(Type.INPROCEEDINGS);
+			    result.setValue(Field.AUTHOR, "ALIJATE Mehdi, NEGROS Hadrien, TURKI Batoul");
+			    result.setValue(Field.YEAR, "TER M2, Montpellier 2 University France - 2014");
+			    result.setValue(Field.TITLE, "Paper : 'New weightings adapted to the classification of small volumes of textual data'");
+			    result.setValue(Field.BOOKTITLE, "Supervised by Flavien Bouillot, Pascal Poncelet and Mathieu Roche ");
+			    
+			    return result;
+			  }
 	protected double m_alpha=1;
 	protected double m_beta = 0;
 
@@ -206,8 +237,8 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 					nbClassContaningWord = classesGivenWord.get(i).size()-1;
 				else
 					nbClassContaningWord = classesGivenWord.get(i).size();
-				intra1[j][i] = nbOfWordGivenClass[j][i] / wordsPerClass[j];
-				intra2[j][i] = (nbOfDocsContainingWordGivenClass[j][i] / nbDocsPerClass[j]);
+				intra1[j][i] = nbOfWordGivenClass[j][i] / (wordsPerClass[j]+1);
+				intra2[j][i] = (nbOfDocsContainingWordGivenClass[j][i] / (nbDocsPerClass[j]+1));
 				inter1[j][i] = (Math.log(((double)m_numClasses)/((double)(nbClassContaningWord+1)))/Math.log(2));
 				for(int x = 0; x<m_numClasses; x++)
 				{
@@ -226,7 +257,7 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 
 				if(inter2[j][i]> maxInter2)
 					maxInter2 = inter2[j][i];
-			//	System.out.println("v:"+intra1[j][i]+":"+intra2[j][i]+":"+inter1[j][i]+":"+inter2[j][i]+":"+temp);
+			//System.out.println("v:"+intra1[j][i]+":"+intra2[j][i]+":"+inter1[j][i]+":"+inter2[j][i]+":"+temp);
 				temp=0;
 
 			}
@@ -242,9 +273,12 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 								* (m_beta*(inter1[j][i]/maxInter1) 
 										+ (1-m_beta) *(inter2[j][i]/maxInter2));
 			}
+			
 		}
-
-
+		/*System.out.println("maxIntra1 : "+ maxIntra1);
+		System.out.println("maxIntra2 : "+ maxIntra2);
+		System.out.println("maxInter1 : "+ maxInter1);
+		System.out.println("maxInter2 : "+ maxInter2);*/
 		/*
 	      calculating Pr(H)
 	      NOTE: Laplace estimator introduced in case a class does not get mentioned in the set of 
