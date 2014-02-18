@@ -1,6 +1,8 @@
-package classifiersTER;
+package weka.classifiers.bayes;
+
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,11 +41,11 @@ import weka.core.Utils;
 <!-- options-start -->
  * Valid options are: <p/>
  * 
- * <pre> -A &lt;number&gt;
- *  Set the alpha value. (default = 2).</pre>
+ * <pre> -A &lt;alphaString&gt;
+ *  Set the alpha value. (default = 1).</pre>
  * 
- * <pre> -B &lt;number&gt;
- *  Set the beta value. (default = 2).</pre>
+ * <pre> -B &lt;betaString&gt;
+ *  Set the beta value. (default = 0).</pre>
  *  
  * <pre> -D
  *  If set, classifier is run in debug mode and
@@ -56,13 +58,13 @@ import weka.core.Utils;
  * @author Batoul Turki (Batoul.Turki@etud.univ-montp2.fr)
  * @version $Revision: 8 $ 
  */
-public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements OptionHandler{
+public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements OptionHandler{
 
 	/** for serialization */
 	private static final long serialVersionUID = 1986672163986255572L;
 
-	private double alpha;
-	private double beta;
+	protected double m_alpha=1;
+	protected double m_beta = 0;
 
 	@Override
 	public void buildClassifier(Instances instances) throws Exception 
@@ -89,7 +91,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 			nbOfWordGivenClass[c] = new double[m_numAttributes];
 			for(int att = 0; att<m_numAttributes; att++)
 			{
-				nbOfWordGivenClass[c][att] = 0;
+				nbOfWordGivenClass[c][att] = 1;
 			}
 		}
 
@@ -99,7 +101,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 			nbOfDocsContainingWordGivenClass[c] = new double[m_numAttributes];
 			for(int att = 0; att<m_numAttributes; att++)
 			{
-				nbOfDocsContainingWordGivenClass[c][att] = 0;
+				nbOfDocsContainingWordGivenClass[c][att] = 1;
 			}
 		}
 
@@ -234,10 +236,10 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 			for(int i = 0; i<m_numAttributes; i++)
 			{
 				m_probOfWordGivenClass[j][i] = 
-						(alpha * (intra1[j][i]/maxIntra1) 
-								+ (1-alpha)* (intra2[j][i]/maxIntra2))
-								* (beta*(inter1[j][i]/maxInter1) 
-										+ (1-beta) *(inter2[j][i]/maxInter2));
+						(m_alpha * (intra1[j][i]/maxIntra1) 
+								+ (1-m_alpha)* (intra2[j][i]/maxIntra2))
+								* (m_beta*(inter1[j][i]/maxInter1) 
+										+ (1-m_beta) *(inter2[j][i]/maxInter2));
 			}
 		}
 
@@ -319,7 +321,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 		}
 
 
-		out.println("\nPondŽration a="+alpha+" b="+beta+" :Prob of Words given Class (Wij):\n");
+		out.println("\nPondŽration a="+m_alpha+" b="+m_beta+" :Prob of Words given Class (Wij):\n");
 		for(int c = 0; c<m_numClasses; c++)
 		{
 			out.println(instances.attribute(instances.classIndex()).value(c)); 
@@ -333,64 +335,21 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 
 	}
 	@Override
-	public double [] distributionForInstance(Instance instance) throws Exception 
-	{
-		double[] probOfClassGivenDoc = new double[m_numClasses];
+	
 
-		
-		for(int i = 0; i<m_numClasses; i++) 
-		{
-			probOfClassGivenDoc[i] =  probOfDocGivenClass(instance, i);
-		}
+	public Enumeration<Option> listOptions() {
+		Vector<Option> newVector = new Vector<Option>();
 
-
-		return probOfClassGivenDoc;
-	}
-	private double probOfDocGivenClass(Instance inst, int classIndex)
-	{
-		double answer = m_probOfClass[classIndex];
-		//double totalWords = 0; //no need as we are not calculating the factorial at all.
-
-		double freqOfWordInDoc;  //should be double
-		for(int i = 0; i<inst.numValues(); i++)
-			if(inst.index(i) != inst.classIndex())
-			{
-				freqOfWordInDoc = inst.valueSparse(i);
-				answer *= (freqOfWordInDoc * (m_probOfWordGivenClass[classIndex][inst.index(i)] +1)
-						);
-			}
-		
-
-
-		return answer;
-	}
-
-	@SuppressWarnings("rawtypes")
-	public Enumeration listOptions() {
-		Vector<Option> newVector = new Vector<Option>(4);
-
-		newVector.addElement(new Option("\tSet value of alpha "
+		newVector.add(new Option("\tSet value of alpha "
 				+"(default = 1).",
-				"A", 1, "-A <number>"));
-		newVector.addElement(new Option("\tSet value of beta "
-				+"(default = 1).",
-				"B", 1, "-B <number>"));
+				"A", 1, "-A <alphaString>"));
+		newVector.add(new Option("\tSet value of beta "
+				+"(default = 0).",
+				"B", 1, "-B <betaString>"));
 		return newVector.elements();
 	}
 
 	/**
-	 * Parses a given list of options. <p/>
-	 *
-	   <!-- options-start -->
-	 * Valid options are: <p/>
-	 * 
-	 * <pre> -A &lt;number&gt;
-	 *  Set the alpha value. (default = 1).</pre>
-	 * 
-	 * <pre> -B &lt;number&gt;
-	 *  Set the beta value. (default = 0).</pre>
-	 *  
-	   <!-- options-end -->
 	 *
 	 * @param options the list of options as an array of strings
 	 * @throws Exception if an option is not supported
@@ -400,19 +359,15 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 
 		String alphaString = Utils.getOption('A', options);
 		if (alphaString.length() != 0) {
-			alpha = Double.parseDouble(alphaString);
-		} else {
-			alpha = 1;
-		}
+			setAlpha(Double.parseDouble(alphaString));
+		} 
 
 
 		String betaString = Utils.getOption('B', options);
 		if (betaString.length() != 0) {
-			beta = Double.parseDouble(betaString);
-		} else {
-			beta = 0;
+			setBeta(Double.parseDouble(betaString));
 		}
-		Utils.checkForRemainingOptions(options);
+
 	}
 
 	 /**
@@ -422,36 +377,36 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 	   */
 	  public String [] getOptions() {
 		
-	    String [] options = new String [5];
-	    int current = 0;
+	    ArrayList<String> options = new ArrayList<String>();
+	   
 	    
-	    options[current++] = "-A";
-	    options[current++] = "" + alpha;
-	    options[current++] = "-B";
-	    options[current++] = "" + beta;
+	      options.add("-A");
+	      options.add(""+getAlpha());
 
-	    while (current < options.length) 
-	      options[current++] = "";
-	    return options;
+	      options.add("-B");
+	      options.add(""+getBeta());
+
+
+	    return options.toArray(new String[1]);
 	  }
 	  
-	  double getAlpha(){
-		  return alpha;
+	  public double getAlpha(){
+		  return m_alpha;
 	  }
-	  void setAlpha(double a){
-		  alpha = a;
+	 public void setAlpha(double a){
+		  m_alpha = a;
 	  }
-	  String alphaTipText(){
+	  public String alphaTipText(){
 		  return "Sets the value of alpha.";
 	  }
 	  
-	  double getBeta(){
-		  return beta;
+	 public double getBeta(){
+		  return m_beta;
 	  }
-	  void setBeta(double b){
-		  beta = b;
+	 public void setBeta(double b){
+		  m_beta = b;
 	  }
-	  String betaTipText(){
+	 public String betaTipText(){
 		  return "Sets the value of beta.";
 	  }
 
@@ -473,7 +428,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial implements O
 		//		} catch (Exception e) {
 		//			e.printStackTrace();
 		//		}
-		runClassifier(new NaiveBayesMultinomialTER(), argv);
+		runClassifier(new NaiveBayesMultinomialTERab(), argv);
 	}
 
 }
