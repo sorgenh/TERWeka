@@ -1,5 +1,5 @@
-package weka.classifiers.bayes;
-
+//package classifiersTER;
+package weka.classifiers.bayes
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -179,7 +179,7 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 
 			ndoc++;
 		}
-		System.out.println("Nb docs: "+numDocs);
+	//	System.out.println("Nb docs: "+numDocs);
 
 
 		double temp=0;
@@ -215,7 +215,6 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 						temp += nbOfDocsContainingWordGivenClass[x][i];	
 				}
 				inter2[j][i] = (Math.log((numDocs - docsGivenClass.get(j).size()+1)/(temp+1)))/Math.log(2);
-
 				if(intra1[j][i]> maxIntra1)
 					maxIntra1 = intra1[j][i];
 
@@ -227,6 +226,8 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 
 				if(inter2[j][i]> maxInter2)
 					maxInter2 = inter2[j][i];
+			//	System.out.println("v:"+intra1[j][i]+":"+intra2[j][i]+":"+inter1[j][i]+":"+inter2[j][i]+":"+temp);
+				temp=0;
 
 			}
 		}	
@@ -253,8 +254,8 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 		for(int h=0; h<m_numClasses; h++)
 			m_probOfClass[h] = (nbDocsPerClass[h] + 1)/numDocs; 
 
-		displayWeightings(System.out,instances,wordsPerClass,nbOfWordGivenClass,nbOfDocsContainingWordGivenClass,classesGivenWord
-				,docsGivenClass,docsGivenWord,m_probOfWordGivenClass);
+	//	displayWeightings(System.out,instances,wordsPerClass,nbOfWordGivenClass,nbOfDocsContainingWordGivenClass,classesGivenWord
+	//			,docsGivenClass,docsGivenWord,m_probOfWordGivenClass);
 
 
 	}
