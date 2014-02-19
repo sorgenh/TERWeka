@@ -53,34 +53,57 @@
 
 \begin{abstract}
 	
-Ce sujet vise à intégrer et à optimiser des algorithmes de classifications supervisées de document dans la suite logiciel WEKA. Ces algorithmes sont issus de travaux de recherche menés récemment au sein du LIRMM.
+Ce sujet vise à intégrer et à optimiser des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA. Ces algorithmes sont issus de travaux de recherche menés récemment au sein du LIRMM.
 \end{abstract}
 
 \newpage 
 %-----------------------------------------------------------
 \section{Introduction}\label{sec:intro}
-//TODO
+
+La classification de documents est le mécanisme consistant à classer automatiquement des ressources la classe prédéfinie lui correspondant le mieux.\\
+Plusieurs formes de classification existent (par genre, par opinion, par thème...etc), et se font via des algorithmes de classifications spécifiques. Ceux-ci se basent sur des méthodes principalement numériques (probabilistes), avec des algorithmes utilisant les mathématiques ou basés sur la recherche d'information. \\
+Ce TER vise justement à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA\footnote{\href{http://www.cs.waikato.ac.nz/~ml/weka/}{Weka est une suite populaire de logiciels d'apprentissage automatique. Écrite en Java, développée à l'université de Waikato, Nouvelle-Zélande. Weka est un Logiciel libre disponible sous la Licence publique générale GNU.}}, se basant sur un nouveau modèle de classification à partir d'un faible nombre de document, intégrant de nouvelles pondérations adaptées.\\
+Tout d'abord, il faudra explorer l'API de WEKA, pour prendre en main du code source, la maniabilité des classes et explorer une méthode d'ajout d'un algorithme de classification. Ensuite, nous nous pencherons sur le développement des différentes classes en établissant une méthodologie concrétisant le travail mené au laboratoire du LIRMM, s'en suivra une phase d'intégration et de tests.\\
+
+
+\textbf{{\normalsize Ce présent mini-rapport présente un compte rendu de la première phase de notre travail, qui s'est déroulée entre notre dernière réunion le 24/01/14 et aujourd'hui. Il sera en partie intégré au rapport final.}}
+
 
 %-----------------------------------------------------------
 
 \section{Exploration de WEKA}
-
+Après la réunion du 24/01/14, nous avons établi un plan de travail pour bien mener et répartir les tâches de ce TER. Il a été décidé de le diviser en trois grandes parties. La première, qui est décrite ci-dessous consiste à explorer et prendre en main l'API de WEKA, afin de pouvoir y rajouter les algorithmes que l'on aura développé lors de la deuxième partie, et qui seront testés et intégrés lors de la troisième.
 \subsection{L'API Weka/Sources avec Eclipse}
-//TODO
+Pour explorer l'API, nous nous sommes aidés de l'IDE Eclipse, qui permet facilement parcourir les sources d'une librairie externe. Après avoir étudié l'arborescence des classes de l'API, nous avons pu cibler les différentes classes et méthodes qui nous intéressent, et étudié leurs fonctionnement. Nous nous sommes aidé de ce wiki \footnote{\href{http://weka.wikispaces.com/}{http://weka.wikispaces.com/}}.
 
 \subsection{L'utilisation des classes}
-//TODO
+Une fois familiarisés avec l'API Weka, on a creusé un peu plus du côté des classes qui pourraient nous être utiles pour ce TER. Il s'agit des certaines classes présentes dans le package{\scriptsize { \normalsize "weka.classifiers"}}. En effet, notre but étant d'intégrer des algorithmes de classification, il est utile de savoir comment tournent les algorithmes de classifications, leur paramétrage et l'architecture pour organiser les ressources pour ces derniers.\\
+Quelques tests ont été menés notamment pour bayes naif multinomial, que nous avons fait tourné sur différentes données, et avec différentes options.
 \subsection{Ajout d'un algorithme dans Weka}
+Après avoir étudié en détail la classe \textit{NaiveBayesMultinomial}, nous avons remarqué que le calcul des pondérations (dans l'implémentation de Weka, seul la mesure intra-classe Tf est utilisée) se fait dans la méthode \textbf{buildClassifier}. Nous allons donc créer une sous classe de \textit{NaiveBayesMultinomial}, contenant une méthode surchargeant \textbf{buildClassifier} dans laquelle nous calculerons toutes les pondérations supplémentaires.\\
+Une fois tout cela creusé et vu en détails, il faudra intégrer l'algorithme dans l'écosystème de Weka, c'est à dire, pour le rendre disponible dans l'Explorateur, expérimentateur, etc . 
+Weka prend en charge les classes dérivées dans le package, ceci est géré par le \textit{GenericPropertiesCreator}. Il faudra donc dire à Weka où trouver notre nouveau classificateur et il s'occupera de l'afficher dans la \textit{GenericObjectEditor}.\\
+Nous y reviendrons plus en détails lors de la troisième étape de notre TER : L'intégration des algorithmes dans WEKA.
+%-----------------------------------------------------------
+\section{Des nouvelles méthodes de classification}
+
+\subsection{Pondérations intra-classes}
+//TODO
+\subsection{Pondérations inter-classes}
+//TODO
+\subsection{Algorithmes de classifications}
 //TODO
 %-----------------------------------------------------------
+
+
 
 \section{Développement des différentes classes}
 
 \subsection{Méthodologie}
 //TODO
-\subsection{Extension de Naive Bayes}
+\subsection{Extension de Naive Bayes Multinomial}
 //TODO
-\subsection{Extension de Class-Feature-Centroide }
+\subsection{Class-Feature-Centroide}
 //TODO
 %-----------------------------------------------------------
 

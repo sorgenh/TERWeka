@@ -3,13 +3,17 @@
 \BOOKMARK [2][-]{subsection.2.1}{L'API Weka/Sources avec Eclipse}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{L'utilisation des classes}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Ajout d'un algorithme dans Weka}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{D\351veloppement des diff\351rentes classes}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{M\351thodologie}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.2}{Extension de Naive Bayes}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.3}{Extension de Class-Feature-Centroide }{section.3}% 9
-\BOOKMARK [1][-]{section.4}{Int\351gration et tests}{}% 10
-\BOOKMARK [2][-]{subsection.4.1}{Int\351gration dans l'\351cosyst\350me de Weka}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.2}{Tests}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.3}{R\351sultats}{section.4}% 13
-\BOOKMARK [1][-]{section.5}{Discussion et Conclusion }{}% 14
-\BOOKMARK [1][-]{section.6}{Sources}{}% 15
+\BOOKMARK [1][-]{section.3}{Des nouvelles m\351thodes de classification}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Pond\351rations intra-classes}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Pond\351rations inter-classes}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Algorithmes de classifications}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{D\351veloppement des diff\351rentes classes}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{M\351thodologie}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Extension de Naive Bayes Multinomial}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Class-Feature-Centroide}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Int\351gration et tests}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Int\351gration dans l'\351cosyst\350me de Weka}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{Tests}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{R\351sultats}{section.5}% 17
+\BOOKMARK [1][-]{section.6}{Discussion et Conclusion }{}% 18
+\BOOKMARK [1][-]{section.7}{Sources}{}% 19
