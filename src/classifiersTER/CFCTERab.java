@@ -1,5 +1,5 @@
 //package classifiersTER;
-//package weka.classifiers.bayes;
+package weka.classifiers.bayes;
 
 import weka.core.Instance;
 

@@ -1,4 +1,4 @@
-//package weka.classifiers.bayes;
+package weka.classifiers.bayes;
 
 
 import java.util.Enumeration;
@@ -139,7 +139,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 			nbOfWordGivenClass[c] = new double[m_numAttributes];
 			for(int att = 0; att<m_numAttributes; att++)
 			{
-				nbOfWordGivenClass[c][att] = 1;
+				nbOfWordGivenClass[c][att] = 0;
 			}
 		}
 
@@ -149,7 +149,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 			nbOfDocsContainingWordGivenClass[c] = new double[m_numAttributes];
 			for(int att = 0; att<m_numAttributes; att++)
 			{
-				nbOfDocsContainingWordGivenClass[c][att] = 1;
+				nbOfDocsContainingWordGivenClass[c][att] = 0;
 			}
 		}
 
@@ -226,7 +226,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 
 			ndoc++;
 		}
-		System.out.println("Nb docs: "+numDocs);
+		//System.out.println("Nb docs: "+numDocs);
 
 		
 		double inter,intra,temp=0;
@@ -242,7 +242,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 					nbClassContaningWord = classesGivenWord.get(i).size()-1;
 				else
 					nbClassContaningWord = classesGivenWord.get(i).size();
-				intra = nbOfWordGivenClass[j][i] / (wordsPerClass[j]+1);
+				intra = ((nbOfWordGivenClass[j][i]+1) / (wordsPerClass[j]+1));
 				inter = (Math.log(((double)m_numClasses)/((double)(nbClassContaningWord+1)))/Math.log(2));
 				m_probOfWordGivenClass[j][i] = intra*inter ;
 			}
@@ -259,7 +259,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 						nbClassContaningWord = classesGivenWord.get(i).size()-1;
 					else
 						nbClassContaningWord = classesGivenWord.get(i).size();
-					intra = (nbOfDocsContainingWordGivenClass[j][i] / (nbDocsPerClass[j]+1)) ;
+					intra = (((nbOfDocsContainingWordGivenClass[j][i])+1) / (nbDocsPerClass[j]+1)) ;
 					inter = (Math.log(((double)m_numClasses)/((double)(nbClassContaningWord+1)))/Math.log(2));
 					m_probOfWordGivenClass[j][i] = intra*inter ;
 				}
@@ -272,7 +272,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 				m_probOfWordGivenClass[j] = new double[m_numAttributes];
 				for(int i = 0; i<m_numAttributes; i++)
 				{
-					intra = nbOfWordGivenClass[j][i] /(wordsPerClass[j]+1);
+					intra = (((nbOfWordGivenClass[j][i])+1) /((wordsPerClass[j])+1));
 					for(int x = 0; x<m_numClasses; x++)
 					{
 						if(x != j)
@@ -292,7 +292,7 @@ public class NaiveBayesMultinomialTER extends NaiveBayesMultinomial {
 				m_probOfWordGivenClass[j] = new double[m_numAttributes];
 				for(int i = 0; i<m_numAttributes; i++)
 				{
-					intra = (nbOfDocsContainingWordGivenClass[j][i] / (nbDocsPerClass[j]+1)) ;
+					intra = ((nbOfDocsContainingWordGivenClass[j][i]+1) / (nbDocsPerClass[j]+1)) ;
 					for(int x = 0; x<m_numClasses; x++)
 					{
 						if(x != j)

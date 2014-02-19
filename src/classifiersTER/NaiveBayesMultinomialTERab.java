@@ -1,5 +1,5 @@
 //package classifiersTER;
-//package weka.classifiers.bayes;
+package weka.classifiers.bayes;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -23,13 +23,9 @@ import weka.core.TechnicalInformation.Type;
  * Class for building and using a multinomial Naive Bayes classifier with the application of four different weightings developed at LIRMM <br/>
  * <br/>
  * <br/>
- * The equations for this weightings:<br/>
+ * The equation for this weighting according to alpha and beta (must be chosen by user on properties, values between [0,1] ):<br/>
  * <br/>
- *The weightings for this classifier can be selected from the properties, and are calculated as follows :<br/>
- *Weighting 1 : W_Tf-Class[ij] = intra-classe(Tf)[ij] × inter-classe(class)[ij] <br/>
- *Weighting 2 : W_Df-Class[ij] = intra-classe(Df)[ij] × inter-classe(class)[ij] <br/>
- *Weighting 3 : W_Tf-Doc[ij] = intra-classe(Tf)[ij] x inter-classe(Doc)[ij]<br/>
- *Weighting 4 : W_Df-Doc[ij] = intra-classe(Df)[ij] x inter-classe(Doc)[ij] <br/>
+ *[(alpha)*(intra-classe(Tf) / maxIntra1) + (1-alpha)*(intra-classe(Df) / maxIntra2)] x [(beta)*(inter-classe(Tf) / maxInter1) + (1-beta)*(inter-classe(Df) / maxInter2)] <br/>
  *where intra-classe(Tf)[ij] = [(number of occurrences of the word i in the class j)/(the total number of words in class j)]+1 <br/>
  *where intra-classe(Df)[ij] = [(number of documents containing the word i in the class j)/(the total number of documents in class j)]+1 <br/>
  *where inter-classe(class)[ij] = Log2[(number of classes excluding class j)+1 / (the total number of classes exluding class j containing the word i)+1] <br/>
@@ -70,11 +66,10 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 		        "Class for building and using a multinomial Naive Bayes classifier with the application of four different weightings developped at LIRMM. "
 		      + "For more information see,\n\n"
 		      + getTechnicalInformation().toString() +"\n"
-		      + "The weightings for this classifier can be selected from the properties, and are calculated as follows :\n\n"
-		      + "Weighting 1 : W_Tf-Class[ij] = intra-classe(Tf)[ij] × inter-classe(class)[ij] \n\n"
-		      + "Weighting 2 : W_Df-Class[ij] = intra-classe(Df)[ij] × inter-classe(class)[ij] \n\n"
-		      + "Weighting 3 : W_Tf-Doc[ij] = intra-classe(Tf)[ij] x inter-classe(Doc)[ij]\n\n"
-		      + "Weighting 4 : W_Df-Doc[ij] = intra-classe(Df)[ij] x inter-classe(Doc)[ij] \n\n"
+		      + "The equation for this weighting according to alpha and beta (must be chosen by user on properties, values between [0,1] ):\n\n"
+		      + "[(alpha)*(intra-classe(Tf) / maxIntra1) + (1-alpha)*(intra-classe(Df) / maxIntra2)] \n"
+		      + "x \n"
+		      + "[(beta)*(inter-classe(Tf) / maxInter1) + (1-beta)*(inter-classe(Df) / maxInter2)]\n\n"
 		      + "where intra-classe(Tf)[ij] = [(number of occurrences of the word i in the class j)+1/(the total number of words in class j)+1] \n\n"
 		      + "where intra-classe(Df)[ij] = [(number of documents containing the word i in the class j)+1/(the total number of documents in class j)+1] \n\n"
 		      + "where inter-classe(class)[ij] = Log2[(number of classes excluding class j)+1 / (the total number of classes exluding class j containing the word i)+1] \n\n"
@@ -122,7 +117,7 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 			nbOfWordGivenClass[c] = new double[m_numAttributes];
 			for(int att = 0; att<m_numAttributes; att++)
 			{
-				nbOfWordGivenClass[c][att] = 1;
+				nbOfWordGivenClass[c][att] = 0;
 			}
 		}
 
@@ -132,7 +127,7 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 			nbOfDocsContainingWordGivenClass[c] = new double[m_numAttributes];
 			for(int att = 0; att<m_numAttributes; att++)
 			{
-				nbOfDocsContainingWordGivenClass[c][att] = 1;
+				nbOfDocsContainingWordGivenClass[c][att] = 0;
 			}
 		}
 
@@ -237,8 +232,8 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 					nbClassContaningWord = classesGivenWord.get(i).size()-1;
 				else
 					nbClassContaningWord = classesGivenWord.get(i).size();
-				intra1[j][i] = nbOfWordGivenClass[j][i] / (wordsPerClass[j]+1);
-				intra2[j][i] = (nbOfDocsContainingWordGivenClass[j][i] / (nbDocsPerClass[j]+1));
+				intra1[j][i] = (((nbOfWordGivenClass[j][i])+1) / (wordsPerClass[j]+1));
+				intra2[j][i] = (((nbOfDocsContainingWordGivenClass[j][i])+1) / (nbDocsPerClass[j]+1));
 				inter1[j][i] = (Math.log(((double)m_numClasses)/((double)(nbClassContaningWord+1)))/Math.log(2));
 				for(int x = 0; x<m_numClasses; x++)
 				{
@@ -296,79 +291,6 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 
 
 
-	private void displayWeightings(PrintStream out, Instances instances, double[] wordsPerClass,
-			double[][] nbOfWordGivenClass,
-			double[][] nbOfDocsContainingWordGivenClass,
-			HashMap<Integer, HashSet<Integer>> classesGivenWord, HashMap<Integer, HashSet<Integer>> docsGivenClass, HashMap<Integer, HashSet<Integer>> docsGivenWord, double[][] probofWordGivenClass) {
-		System.out.println("Words Per Class:\n");
-		for(int c = 0; c<m_numClasses; c++)
-		{
-
-			out.println(instances.attribute(instances.classIndex()).value(c) +" : " +wordsPerClass[c]);
-		}
-
-		out.println("\nNb Words given Class:\n");
-		for(int c = 0; c<m_numClasses; c++)
-		{
-			out.println(instances.attribute(instances.classIndex()).value(c)); 
-			for(int att = 0; att<m_numAttributes; att++)
-			{
-				out.println("\t"+instances.attribute(att).name() +" : " +nbOfWordGivenClass[c][att]);
-
-			}
-		}
-		out.println("\nNb Docs containing Word given Class:\n");
-		for(int c = 0; c<m_numClasses; c++)
-		{
-			out.println(instances.attribute(instances.classIndex()).value(c)); 
-			for(int att = 0; att<m_numAttributes; att++)
-			{
-				out.println("\t"+instances.attribute(att).name() +" : " +nbOfDocsContainingWordGivenClass[c][att]);
-
-			}
-		}
-		out.println("\nClasses Given Word:\n");
-		for(int att = 0; att<m_numAttributes; att++)
-		{
-			out.print(instances.attribute(att).name() + " : ");
-			for(int c : classesGivenWord.get(att)){
-				out.print(instances.attribute(instances.classIndex()).value(c) +  " ");
-			}
-			out.println();
-		}
-		out.println("\nDocs Given Class:\n");
-		for(int c = 0; c<m_numClasses; c++)
-		{
-			out.print(instances.attribute(instances.classIndex()).value(c) + " : ");
-			for(int doc : docsGivenClass.get(c)){
-				out.print(doc  +  " ");
-			}
-			out.println();
-		}
-		out.println("\nDocs Given Word:\n");
-		for(int att = 0; att<m_numAttributes; att++)
-		{
-			out.print(instances.attribute(att).name() + " : ");
-			for(int doc : docsGivenWord.get(att)){
-				out.print(doc  +  " ");
-			}
-			out.println();
-		}
-
-
-		out.println("\nPondŽration a="+m_alpha+" b="+m_beta+" :Prob of Words given Class (Wij):\n");
-		for(int c = 0; c<m_numClasses; c++)
-		{
-			out.println(instances.attribute(instances.classIndex()).value(c)); 
-			for(int att = 0; att<m_numAttributes; att++)
-			{
-				out.println("\t"+instances.attribute(att).name() +" : " +probofWordGivenClass[c][att]);
-
-			}
-		}
-
-
-	}
 	@Override
 	
 
@@ -452,17 +374,6 @@ public class NaiveBayesMultinomialTERab extends NaiveBayesMultinomial implements
 	 * @throws Exception 
 	 */
 	public static void main(String [] argv) {
-
-
-		//		NaiveBayesMultinomialTER test = new NaiveBayesMultinomialTER();
-		//		try {
-		//			DataSource ds = new DataSource(argv[1]);
-		//			Instances i = ds.getDataSet();
-		//			i.setClassIndex(i.numAttributes()-1);
-		//			test.buildClassifier(i);
-		//		} catch (Exception e) {
-		//			e.printStackTrace();
-		//		}
 		runClassifier(new NaiveBayesMultinomialTERab(), argv);
 	}
 
