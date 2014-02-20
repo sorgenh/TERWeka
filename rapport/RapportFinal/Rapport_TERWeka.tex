@@ -54,6 +54,9 @@
 \begin{abstract}
 	
 Ce sujet vise à intégrer et à optimiser des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA. Ces algorithmes sont issus de travaux de recherche menés récemment au sein du LIRMM.
+\begin{center}
+\href{https://github.com/sorgenh/TERWeka/}{https://github.com/sorgenh/TERWeka/}
+\end{center}
 \end{abstract}
 
 \newpage 
@@ -130,6 +133,7 @@ Cette mesure dépend du nombre de documents extérieurs à la classe contenant l
   \end{itemize}
 \subsection{Algorithmes de classifications}
 Un algorithme de classification permet de calculer la probabilité de l'appartenance d'un document aux différentes classes du corpus, et donc de l'affecter à la plus probable. Nous allons implémenter un classifieur \textit{Naive Bayes} et \textit{Class-Feature-Centroid}\cite{RNTIB} en utilisant les mesures définies plus haut. Pour calculer la probabilité $w_{ij}$ d'un terme $i$ dans une classe $j$, nous allons combiner les différentes pondérations de 4 façons:
+\medskip
 \begin{itemize}
 \item $w_{ij}^{Tf-Class}$=$inner$-$weight_{ij}^{Tf}$ $\times$ $inter$-$weight_{ij}^{class}$
 %=$ \frac{TF_{ti}^j}{|n_{j}|}$ x $log_2 \frac{|C|}{CF_{ti}}$
@@ -140,7 +144,8 @@ Un algorithme de classification permet de calculer la probabilité de l'apparten
 \item $w_{ij}^{Df-Doc}$=$inner$-$weight_{ij}^{Df}$ $\times$ $inter$-$weight_{ij}^{doc}$
 %=$\frac{DF_{ti}^j}{|d_{j}|}$ x $log_2 \frac{|d|-|d \in{C_j}|+1}{|d:t_i|-|d:t_i \in{C_j}|+1}$
 \end{itemize}
-Nous allons aussi mettre en place une combinaison de ces mesures dépendante de deux paramètres $\alpha$ et $\beta$:
+\bigskip
+Nous allons aussi mettre en place une combinaison de ces mesures dépendante de deux paramètres\\ $\alpha,\beta \in [0,1]$:
 \[ w_{ij}^{ \alpha \beta}=(\alpha \times innerweight_{ij}^{Tf} + (1-\alpha)\times innerweight_{ij}^{Df} )\times(\beta \times interweight_{ij}^{class} + (1-\beta) \times interweight_{ij}^{doc} )\]
 On remarque qu'en faisant varier $\alpha$ et $\beta$, on peut retrouver les quatre premières formules.
 %-----------------------------------------------------------
@@ -150,22 +155,44 @@ On remarque qu'en faisant varier $\alpha$ et $\beta$, on peut retrouver les quat
 \section{Développement des différentes classes}\label{sec:classes}
 
 \subsection{Méthodologie}
-//TODO
+Après avoir étudié l'API Weka, nous avons pu identifier les différentes méthodes de la super-classe \textit{classifier} que nous allons devoir implémenter:
+\begin{description}
+\item[buildClassifier()]  C'est la méthode dans laquelle est calculé le tableau des $w_{ij}$ (La probabilité d'un mot par rapport à une classe).
+\item[distributionForInstance(Instance)] Renvoie les probabilités du document (Instance) en entrée pour chacune des classes du corpus.
+\end{description}
+ Pour notre implémentation, nous allons nous baser sur la classe \textit{NaiveBayesMultinomial}\footnote{http://weka.sourceforge.net/doc.dev/weka/classifiers/bayes/NaiveBayesMultinomial.html}
 \subsection{Extension de Naive Bayes Multinomial}
-//TODO
-\subsection{Class-Feature-Centroide}
-//TODO
+Nous avons donc créé une nouvelle classe, \textit{NaiveBayesMultinomialTER} dans laquelle sont implémentée les pondérations $inner$-$weight_{ij}^{Tf}$, $inner$-$weight_{ij}^{Df}$, $inter$-$weight_{ij}^{class}$ et $inter$-$weight_{ij}^{doc}$. Celles ci sont calculées dans la méthode \textit{buildClassifier} que nous avons donc surchargé.
+\medskip
+Nous avons ensuite créé une seconde classe \textit{NaiveBayesMultinomialTERab} sur le même principe, mais implémentant cette fois $w_{ij}^{\alpha \beta}$
+\subsection{Class-Feature-Centroid}
+La classe \textit{CFCTERab} que nous avons créé utilise les même pondérations que \textit{NaiveBayesMultinomialTERab}, nous en avons donc fait une sous classe de celle ci afin de réutiliser la méthode \textbf{buildClassifier()} déjà implémentée. La différence est ici dans le calcul de la probabilité qu'un document appartienne à une classe, et donc dans la méthode \textbf{distributionForInstance(Instance}. C'est celle ci que nous avons surchargé.
+
+\medskip
+Pour calculer la probabilité qu'un document appartienne à une classe, on procède de la façon suivante:
+\begin{itemize}
+\item On représente les classes comme des vecteurs ayant pour taille le nombre d'attributs différents dans le corpus, et pour valeurs la probabilité du terme dans la classe. (exemple: $\vec{C_j} = (0.1,0.3,0.2,0)$)
+\item On représente les documents comme des vecteurs ayant aussi pour taille le nombre d'attributs, et pour valeurs la probabilité du terme dans la classe \textbf{ou 0 si le terme n'apparait pas dans le document}. (exemple: $\vec{d} = (0.1,0,0.2,0)$, le terme 2 n'apparait pas dans le document)
+\item On mesure ensuite la proximité entre ces vecteurs. La métrique que nous avons choisi est la \textit{Similarité Cosinus} définie ci dessous.
+\[simcos(\vec{u},\vec{v}) = arccos( \frac{\vec{u}.\vec{v}}{\|\vec{u}\|.\|\vec{v}\|})\]
+\end{itemize}
+Cette similarité normalisée nous donne la probabilité du document dans la classe.
+
+\medskip
+
+Le problème est que un document peut ne contenir aucun terme, si par exemple il y a eu une sélection d'attribut en amont (c'était le cas sur nos fichiers de test). Cela résulte en un vecteur nul, donc de norme nulle, et d'une division par zéro lors du calcul de la similarité. La solution trouvée est de rajouter une dimension de valeur 1 aux vecteurs.
+
 %-----------------------------------------------------------
 
 
 
-\section{Intégration et tests}\label{Res}
+\section{Intégration et tests}
 \subsection{Intégration dans l'écosystème de Weka}
 Une fois nos classes, et donc nos trois algorithmes implémenter en langage Java (Cf. Chapitre \ref{sec:classes} ) :
 \begin{itemize}
 \item  \texttt{NaiveBayesMultinomialTER.java} : construit le modèle de classification avec les quatre pondérations définies (le choix de la pondération se fait via les options).
-\item  \texttt{NaiveBayesMultinomialTERab.java} : construit le modèle de classification avec les quatre pondérations définies en variant les valeurs de a : \textalpha \ et b : \textbeta \ (le choix des valeurs de \textalpha \ et \textbeta \ se fait via les options).
-\item  \texttt{CFCTERab.java} : construit le modèle de classification Class-Feature-Centroide en variant les valeurs de a: \textalpha \ et b : \textbeta \ (le choix des valeurs de \textalpha \ et \textbeta \ se fait via les options).
+\item  \texttt{NaiveBayesMultinomialTERab.java} : construit le modèle de classification avec les quatre pondérations définies en variant les valeurs de a : $\alpha$ \ et b : $\beta$ \ (le choix des valeurs de $\alpha$ \ et $\beta$ \ se fait via les options).
+\item  \texttt{CFCTERab.java} : construit le modèle de classification Class-Feature-Centroide en variant les valeurs de a: $\alpha$ \ et b : $\beta$ \ (le choix des valeurs de $\alpha$ \ et $\beta$ \ se fait via les options).
 \end{itemize}
 Une fois nos trois .java prêts, l'intégration dans Weka est prise en charge via  \textit{GenericPropertiesCreator}. C'est là où on peut dire à Weka où trouver nos nouveaux classifieurs et il s'occupera de les afficher dans  \textit{GenericObjectEditor}, et donc dans l'interface graphique. La procédure détaillée est : \\
 \textbf{\underline{Prérequis :}}
@@ -193,13 +220,15 @@ Ensuite, il suffit de placer les trois fichiers .java développés dans le répe
 \texttt{ant exejar}\\
 Celle-ci fera appel automatiquement au fichier \texttt{build.xml}, qui, comme expliqué dans la sous-section \ref{sec:algoW}, construira de nouveau Weka, et donnera en sortie dans le répertoire \texttt{/temp/weka/weka-src/dist/} un nouvel executable \texttt{weka.jar}, contenant les nouveaux algorithmes de classifications.
 \subsection{Tests}
-Afin de tester la pertinence de nos nouveaux algorithmes de classifications, nous avons créer 2 fichiers \texttt{.arff}, avec deux jeux de données aléatoires mais cohérents. 
+Afin de tester l'exactitude des résultats de nos nouveaux algorithmes de classifications, nous avons créé un petit fichier de données aléatoire, puis nous avons calculer à la main les pondérations et comparé avec nos résultats. 
+\bigskip
+Pour tester la performance de nos algorithmes, nous avons utilisé des fichiers de données créés lors d'un précédent projet. Ceux ci contiennent un grand nombre de données textuelle (résumés de films) divisés en plusieurs classes:
 \begin{itemize}
 \item \texttt{\textbf{test3classes.arff}} : \textbf{150} instances et \textbf{41} attributs (une selection d'attributs a été faite dessus), avec \textbf{3} classes : Policier, Fantastique, Comédie.
 \item \texttt{\textbf{test5classes.arff}} : \textbf{248} instances et \textbf{5082} attributs au complet (sans selection d'attributs), avec \textbf{5} classes : Thriller, Western, Guerre, Policier, Sciences.
 \end{itemize}
 Le but étant de classifié les films selon leur catégorie cinématographique .
-Nos deux fichiers .arff ont subi de multiples tests avec nos trois algorithmes, avec différentes valeurs pour nos variables \textalpha \ et \textbeta, que ce soit pour le NaiveBayesMultinomialTERab ou le CFCTERab.\\
+Nos deux fichiers .arff ont subi de multiples tests avec nos trois algorithmes, avec différentes valeurs pour nos variables $\alpha$ \ et $\beta$, que ce soit pour le NaiveBayesMultinomialTERab ou le CFCTERab.\\
 Les résultats des tests sont donnés dans la section ci-dessous.
 
 \subsection{Résultats}
@@ -222,28 +251,30 @@ Le tableau \ref{NBTER} présente les résultats de classifications correctes att
 \centering
     \begin{tabular}{|l|c|c|c|c||c|}
 \hline
- Algo/FichierTest & \textalpha & \textbeta & NBMTER\textalpha\textbeta & CFCTER\textalpha\textbeta & NBMultinomial \\
+ Algo/FichierTest & $\alpha$ & $\beta$ & NBMTER$\alpha$$\beta$ & CFCTER$\alpha$$\beta$ & NBMultinomial \\
     \hline
-    test3classes.arff &  \textalpha = 0.0 & \textbeta = 1.0& \textbf{67\%} & 68\% & 66\% \\
+    test3classes.arff &  0.0 &  1.0& \textbf{67\%} & 68\% & 66\% \\
     \cline{2-5}
-         ~ &  \textalpha = 0.6  & \textbeta = 0.6 & 66\% & \textbf{74\%} & ~\\
+         ~ &   0.6  &  0.6 & 66\% & \textbf{74\%} & ~\\
          \cline{2-5}
-         ~ &  \textalpha = 0.7  & \textbeta = 0.3 & 66\% & 73\% & ~\\
+         ~ &   0.7  &  0.3 & 66\% & 73\% & ~\\
     \hline
-     test5classes.arff & \textalpha = 0.0 & \textbeta = 1.0& \textbf{67\%} &68\% & 63\% \\
+     test5classes.arff &  0.0 &  1.0& \textbf{67\%} &68\% & 63\% \\
     \cline{2-5}
-         ~ &  \textalpha = 0.6  & \textbeta = 0.6 & 65\% & \textbf{70\%} & ~\\
+         ~ &   0.6  &  0.6 & 65\% & \textbf{70\%} & ~\\
          \cline{2-5}
-         ~ &  \textalpha = 0.7  & \textbeta = 0.3 & 58\% & 60\% & ~\\
+         ~ &   0.7  &  0.3 & 58\% & 60\% & ~\\
     \hline
     \end{tabular}
-    \caption {Expérimentations avec différentes valeurs de \textalpha  \ et \textbeta \  pour NBTER\textalpha\textbeta \ et CFCTER\textalpha\textbeta }
+    \caption {Expérimentations avec différentes valeurs de $\alpha$  \ et $\beta$ \  pour NBTER$\alpha$$\beta$ \ et CFCTER$\alpha$$\beta$ }
  \label{NBab}
 \end{table*}
 \subparagraph*{•}
-Le tableau \ref{NBab} présente les résultats de classifications correctes atteintes avec nos deux algorithmes \texttt{NaiveBayesMultinomialTERab} et \texttt{CFCTERab}, en variant les valeurs de \textalpha  \ et \textbeta . Nous constatons que dans tous les cas où \textalpha $ \leq$ \textbeta , on est toujours supérieurs à  \texttt{NaiveBayesMultinomial}.   Parcontre, seul notre corpus réduit \texttt{test3classes.arff} donne des résultats $\geq$ à ceux de \texttt{NaiveBayesMultinomial} quand \textalpha \ > \textbeta .\\
-Nous constatons aussi que \texttt{CFCTER\textalpha\textbeta} présente une meilleure classification que \texttt{NaiveBayesMultinomialTER\textalpha\textbeta}.
+Le tableau \ref{NBab} présente les résultats de classifications correctes atteintes avec nos deux algorithmes \texttt{NaiveBayesMultinomialTERab} et \texttt{CFCTERab}, en variant les valeurs de $\alpha$  \ et $\beta$ . Nous constatons que dans tous les cas où $\alpha$ $ \leq$ $\beta$ , on est toujours supérieurs à  \texttt{NaiveBayesMultinomial}.   Parcontre, seul notre corpus réduit \texttt{test3classes.arff} donne des résultats $\geq$ à ceux de \texttt{NaiveBayesMultinomial} quand $\alpha$ \ > $\beta$ .\\
+Nous constatons aussi que \texttt{CFCTER$\alpha$$\beta$} présente une meilleure classification que \texttt{NaiveBayesMultinomialTER$\alpha$$\beta$}.
 %-----------------------------------------------------------
+
+
 
 
 \section{Discussion et Conclusion }
@@ -260,7 +291,7 @@ ont été atteint, les difficultés principales rencontrées étant de bien comp
 \newpage
 \section{Sources}
 \begin{itemize}
-\item Wiki de Weka\label{weka}  : \href{http://weka.wikispaces.com/Writing+your+own+Classifier}{http://weka.wikispaces.com/Writing+your+own+Classifier}
+\item Wiki de Weka \label{weka}: \href{http://weka.wikispaces.com/Writing+your+own+Classifier}{http://weka.wikispaces.com/Writing+your+own+Classifier}
  \\
 \item Naive Bayes  : \href{$http://scikit-learn.org/stable/modules/naive_bayes.html$}{http://scikit-learn.org/stable/modules/naive\_bayes.html}
 

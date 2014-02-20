@@ -10,7 +10,7 @@
 \BOOKMARK [1][-]{section.4}{D\351veloppement des diff\351rentes classes}{}% 10
 \BOOKMARK [2][-]{subsection.4.1}{M\351thodologie}{section.4}% 11
 \BOOKMARK [2][-]{subsection.4.2}{Extension de Naive Bayes Multinomial}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.3}{Class-Feature-Centroide}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Class-Feature-Centroid}{section.4}% 13
 \BOOKMARK [1][-]{section.5}{Int\351gration et tests}{}% 14
 \BOOKMARK [2][-]{subsection.5.1}{Int\351gration dans l'\351cosyst\350me de Weka}{section.5}% 15
 \BOOKMARK [2][-]{subsection.5.2}{Tests}{section.5}% 16
