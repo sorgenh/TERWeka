@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {4.3}Class-Feature-Centroide}{3}{subsection.4.3}
 \contentsline {section}{\numberline {5}Int\IeC {\'e}gration et tests}{3}{section.5}
 \contentsline {subsection}{\numberline {5.1}Int\IeC {\'e}gration dans l'\IeC {\'e}cosyst\IeC {\`e}me de Weka}{3}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Tests}{3}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}R\IeC {\'e}sultats}{3}{subsection.5.3}
-\contentsline {section}{\numberline {6}Discussion et Conclusion }{4}{section.6}
+\contentsline {subsection}{\numberline {5.2}Tests}{4}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}R\IeC {\'e}sultats}{4}{subsection.5.3}
+\contentsline {section}{\numberline {6}Discussion et Conclusion }{5}{section.6}
 \contentsline {section}{\numberline {7}Sources}{5}{section.7}
