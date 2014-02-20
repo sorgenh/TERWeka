@@ -220,7 +220,8 @@ Les deux tableaux suivants montrent les résultats relevés suite aux expérimen
     \caption {Expérimentations avec les quatre pondérations et comparaison avec NBMultinomial}
  \label{NBTER}
 \end{table*}
-Le tableau \ref{NBTER} présente les résultats de classifications correctes atteintes avec distinctement les quatre pondérations $Nb^{Tf-Class}$, $Nb^{Df-Class}$, $Nb^{Tf-Doc}$ et $Nb^{Df-Doc}$ de notre algorithme  \texttt{NaiveBayesMultinomialTER}. Nous constatons que l'utilisation de la pondération $W^{Df-Class}$, pour nos deux jeux de données, donne des résultats supérieurs à ceux d'une classification avec NaïveBayesMultinomial.
+\subparagraph*{•}
+Le tableau \ref{NBTER} présente les résultats de classifications correctes atteintes avec distinctement les quatre pondérations $Nb^{Tf-Class}$, $Nb^{Df-Class}$, $Nb^{Tf-Doc}$ et $Nb^{Df-Doc}$ de notre algorithme  \texttt{NaiveBayesMultinomialTER}. Nous constatons que l'utilisation de la pondération $W^{Df-Class}$, pour nos deux jeux de données, donne des résultats supérieurs à ceux d'une classification avec  \texttt{NaiveBayesMultinomial}.
 \begin{table*}[h]
 \centering
     \begin{tabular}{|l|c|c|c|c||c|}
@@ -231,18 +232,21 @@ Le tableau \ref{NBTER} présente les résultats de classifications correctes att
     \cline{2-5}
          ~ &  \textalpha = 0.6  & \textbeta = 0.6 & 66\% & \textbf{74\%} & ~\\
          \cline{2-5}
-         ~ &  \textalpha = 0.7  & \textbeta = 0.3 & 66\% & \textbf{73\%} & ~\\
+         ~ &  \textalpha = 0.7  & \textbeta = 0.3 & 66\% & 73\% & ~\\
     \hline
-     test5classes.arff & \textalpha = 0.0 & \textbeta = 1.0& \textbf{67\%} &\textbf{68\%} & 63\% \\
+     test5classes.arff & \textalpha = 0.0 & \textbeta = 1.0& \textbf{67\%} &68\% & 63\% \\
     \cline{2-5}
          ~ &  \textalpha = 0.6  & \textbeta = 0.6 & 65\% & \textbf{70\%} & ~\\
          \cline{2-5}
          ~ &  \textalpha = 0.7  & \textbeta = 0.3 & 58\% & 60\% & ~\\
     \hline
     \end{tabular}
-    \caption {Expérimentations avec différentes valeurs de \textalpha  \ et \textbeta \  pour NBTER\textalpha\textbeta \ et CFCTER\textalpha\textbeta}
+    \caption {Expérimentations avec différentes valeurs de \textalpha  \ et \textbeta \  pour NBTER\textalpha\textbeta \ et CFCTER\textalpha\textbeta }
  \label{NBab}
 \end{table*}
+\subparagraph*{•}
+Le tableau \ref{NBab} présente les résultats de classifications correctes atteintes avec nos deux algorithmes \texttt{NaiveBayesMultinomialTERab} et \texttt{CFCTERab}, en variant les valeurs de \textalpha  \ et \textbeta . Nous constatons que dans tous les cas où \textalpha $ \leq$ \textbeta , on est toujours supérieurs à  \texttt{NaiveBayesMultinomial}.   Parcontre, seul notre corpus réduit \texttt{test3classes.arff} donne des résultats $\geq$ à ceux de \texttt{NaiveBayesMultinomial} quand \textalpha \ > \textbeta .\\
+Nous constatons aussi que \texttt{CFCTER\textalpha\textbeta} présente une meilleure classification que \texttt{NaiveBayesMultinomialTER\textalpha\textbeta}.
 %-----------------------------------------------------------
 
 
@@ -250,8 +254,15 @@ Le tableau \ref{NBTER} présente les résultats de classifications correctes att
 //TODO
 %-----------------------------------------------------------
 
+\newpage
 \section{Sources}
-//TODO
+\begin{itemize}
+\item Wiki de Weka : \href{http://weka.wikispaces.com/Writing+your+own+Classifier}{http://weka.wikispaces.com/Writing+your+own+Classifier}
+ \\
+\item Naive Bayes  : \href{$http://scikit-learn.org/stable/modules/naive_bayes.html$}{http://scikit-learn.org/stable/modules/naive\_bayes.html}
+
+
+\end{itemize}
 
 %-----------------------------------------------------------
 \bibliographystyle{plain}
