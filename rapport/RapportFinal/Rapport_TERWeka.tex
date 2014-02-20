@@ -64,11 +64,7 @@ Plusieurs formes de classification existent (par genre, par opinion, par thème.
 Ce TER vise justement à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA\footnote{\href{http://www.cs.waikato.ac.nz/~ml/weka/}{Weka est une suite populaire de logiciels d'apprentissage automatique. Écrite en Java, développée à l'université de Waikato, Nouvelle-Zélande. Weka est un Logiciel libre disponible sous la Licence publique générale GNU.}}, se basant sur un nouveau modèle de classification à partir d'un faible nombre de document, intégrant de nouvelles pondérations adaptées.\\
 Tout d'abord, il faudra explorer l'API de WEKA, pour prendre en main du code source, la maniabilité des classes et explorer une méthode d'ajout d'un algorithme de classification. Ensuite, nous nous pencherons sur le développement des différentes classes en établissant une méthodologie concrétisant le travail mené au laboratoire du LIRMM, s'en suivra une phase d'intégration et de tests.
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9e0e1be9fdd1d3539de8297dd0474a48aaa6d387
 %-----------------------------------------------------------
 
 \section{Exploration de WEKA}
@@ -163,7 +159,7 @@ On remarque qu'en faisant varier $\alpha$ et $\beta$, on peut retrouver les quat
 
 
 
-\section{Intégration et tests}
+\section{Intégration et tests}\label{Res}
 \subsection{Intégration dans l'écosystème de Weka}
 Une fois nos classes, et donc nos trois algorithmes implémenter en langage Java (Cf. Chapitre \ref{sec:classes} ) :
 \begin{itemize}
@@ -251,13 +247,20 @@ Nous constatons aussi que \texttt{CFCTER\textalpha\textbeta} présente une meill
 
 
 \section{Discussion et Conclusion }
-//TODO
+Dans ce TER, nous avons produit et intégré des bibliothèques Java, implémentant des nouvelles méthodes pertinentes et validées via des prototypes au sein du laboratoire LIRMM. Ces nouvelles méthodes de classifications sont maintenant intégrer dans l’environnement Weka.
+Elles peuvent être utilisées aussi bien via l'interface graphique qu'en ligne de commande. Ces nouvelles mesures sont particulièrement adaptées aux faibles volumes de données, et, comme vu au chapitre \ref{Res}, ces mesures ont été tésté dans un cadre supervisé notamment via Naive Bayes (Multinomial) et une approche basée sur les centroides (CFC). \\
+Les expérimentations menées aussi sur nos deux corpus de 3 et 5 classes ont permis de montrer que celles-ci ont généralement un meilleur comportement que l'approche existante de Naive Bayes Multinomial.\\
+Les différents objectifs de ce TER, qui sont :\\
+• Prise en main de Weka \\
+• Développement des différentes bibliothèques en java \\
+• L'intégration dans l’écosystème Weka \\
+ont été atteint, les difficultés principales rencontrées étant de bien comprendre à la fois l'architecture interne et le fonctionnement de WEKA, ainsi que l'intuition qui porte les nouvelles mesures, ont axé et constitué la ligne directrice de notre travail, où nous avons mené une étude bibliographique sur l'article scientifique présentant la nouvelle méthodologie \cite{RNTIB}, ainsi qu'un parcours prolixe de la documentation de WEKA(cf. Wiki de Weka \ref{weka}).
 %-----------------------------------------------------------
 
 \newpage
 \section{Sources}
 \begin{itemize}
-\item Wiki de Weka : \href{http://weka.wikispaces.com/Writing+your+own+Classifier}{http://weka.wikispaces.com/Writing+your+own+Classifier}
+\item Wiki de Weka\label{weka}  : \href{http://weka.wikispaces.com/Writing+your+own+Classifier}{http://weka.wikispaces.com/Writing+your+own+Classifier}
  \\
 \item Naive Bayes  : \href{$http://scikit-learn.org/stable/modules/naive_bayes.html$}{http://scikit-learn.org/stable/modules/naive\_bayes.html}
 
