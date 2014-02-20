@@ -64,8 +64,11 @@ Plusieurs formes de classification existent (par genre, par opinion, par thème.
 Ce TER vise justement à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA\footnote{\href{http://www.cs.waikato.ac.nz/~ml/weka/}{Weka est une suite populaire de logiciels d'apprentissage automatique. Écrite en Java, développée à l'université de Waikato, Nouvelle-Zélande. Weka est un Logiciel libre disponible sous la Licence publique générale GNU.}}, se basant sur un nouveau modèle de classification à partir d'un faible nombre de document, intégrant de nouvelles pondérations adaptées.\\
 Tout d'abord, il faudra explorer l'API de WEKA, pour prendre en main du code source, la maniabilité des classes et explorer une méthode d'ajout d'un algorithme de classification. Ensuite, nous nous pencherons sur le développement des différentes classes en établissant une méthodologie concrétisant le travail mené au laboratoire du LIRMM, s'en suivra une phase d'intégration et de tests.
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9e0e1be9fdd1d3539de8297dd0474a48aaa6d387
 %-----------------------------------------------------------
 
 \section{Exploration de WEKA}
@@ -82,14 +85,68 @@ Une fois tout cela creusé et vu en détails, il faudra intégrer l'algorithme d
 Weka prend en charge les classes dérivées dans le package, ceci est géré par le \textit{GenericPropertiesCreator}. Il faudra donc dire à Weka où trouver notre nouveau classificateur et il s'occupera de l'afficher dans la \textit{GenericObjectEditor}.\\
 Nous y reviendrons plus en détails lors de la troisième étape de notre TER : L'intégration des algorithmes dans WEKA.
 %-----------------------------------------------------------
-\section{Des nouvelles méthodes de classification}
-
-\subsection{Pondérations intra-classes}
-//TODO
-\subsection{Pondérations inter-classes}
-//TODO
+\section{De nouvelles méthodes de classification}
+Dans cette partie, nous allons vous présenter les différentes pondérations que nous allons utiliser pour construire nos classifieurs.
+Nous allons d'abord définir les mesures intra-classe inspirées du TF-IDF, puis les mesures inter-classe développées au \textit{LIRMM}.
+Ces mesures vont nous permettre de définir si un terme (un élément d'un document) est plus ou moins représentatif de la classe.\\Toutes ces mesures ont étés définies dans l'article \textit{De nouvelles pondérations adaptées à la classification de petits volumes de données textuelles. }\cite{RNTIB}.
+\subsection{Pondérations intra-classe}
+Les pondérations que nous définissons ci-dessous sont dites \textbf{intra-classe} car les différentes valeurs que nous utilisons pour les
+calculer sont dépendante d'une classe.
+\subsubsection*{intra-classe document}
+Cette mesure dépend du nombre de documents contenant le terme dans la classe.
+  \[ inner\mbox{-}weight_{ij}^{Df} = \frac{DF_{ti}^j}{|d_{j}|}\]
+  
+      Avec:
+  \begin{itemize}
+  	\item $DF_{ti}^j$: Nombre de documents contenant le terme $t_i$ dans la classe $C_j$	
+  	\item $|d_{j}|$: Nombre de documents dans $C_j$	
+    \end{itemize}
+\subsubsection*{intra-classe terme}
+Cette mesure dépend du nombre d'occurrences du terme dans la classe.
+\[   inner\mbox{-}weight_{ij}^{Tf} = \frac{TF_{ti}^j}{|n_{j}|}\]
+  Avec:
+\begin{itemize}
+	\item $TF_{ti}^j$: Nombre d'occurrences du terme $t_i$ dans la classe $C_j$	
+	\item $|n_{j}|$: Nombre de termes total dans la classe $C_j$	
+  \end{itemize}
+\subsection{Pondérations inter-classe}
+Les pondérations inter-classes en revanche utilisent des valeurs calculées à partir de l'ensemble du corpus (depuis les classes extérieures à celle qui nous intéresse).
+\subsubsection*{inter-classe terme}
+Cette mesure dépend du nombre de classes contenant le terme.
+\[inter\mbox{-}weight_{ij}^{class} = log_2 \frac{|C|}{C_{ti}}\]
+Avec:
+\begin{itemize}
+	\item $|C|$: Nombre de classes			
+	\item $C_{ti}$: Nombre de classes contenant le terme $t_i$
+  \end{itemize}
+\subsubsection*{inter-classe document}
+Cette mesure dépend du nombre de documents extérieurs à la classe contenant le terme.
+\[ inter\mbox{-}weight_{ij}^{doc} = log_2 \frac{|d \notin{C_j}|+1}{|d:t_i \notin{C_j}|+1}= log_2 \frac{|d|-|d \in{C_j}|+1}{|d:t_i|-|d:t_i \in{C_j}|+1}\]
+ Avec:
+\begin{itemize}
+	\item $|d \notin  {C_j}|$: Nombre de documents n'appartenant pas à la classe $C_j$
+	\item $|d:t_i \notin {C_j}|$: Nombre de documents n'appartenant pas à la classe $C_j$ qui contient $t_i$ 
+	\item $|d|$: Nombre de documents dans l'ensemble des classes
+	\item $|d \in  {C_j}|$: Nombre de documents de la classe $C_j$
+	\item $|d:t_i|$: Nombre de documents dans l'ensemble des classes contenant le terme $t_i$ 
+	\item $|d:t_i \in {C_j}|$: Nombre de documents de la classe $C_j$ qui contient $t_i$ 
+	\item En ajoutant 1, permet de prévenir le cas où $t_i$ est uniquement utilisé dans $C_j$ (quand $|d:t_i \notin{C_j}|={|d:t_i|-|d:t_i \in{C_j}|} = 0$)
+  \end{itemize}
 \subsection{Algorithmes de classifications}
-//TODO
+Un algorithme de classification permet de calculer la probabilité de l'appartenance d'un document aux différentes classes du corpus, et donc de l'affecter à la plus probable. Nous allons implémenter un classifieur \textit{Naive Bayes} et \textit{Class-Feature-Centroid}\cite{RNTIB} en utilisant les mesures définies plus haut. Pour calculer la probabilité $w_{ij}$ d'un terme $i$ dans une classe $j$, nous allons combiner les différentes pondérations de 4 façons:
+\begin{itemize}
+\item $w_{ij}^{Tf-Class}$=$inner$-$weight_{ij}^{Tf}$ $\times$ $inter$-$weight_{ij}^{class}$
+%=$ \frac{TF_{ti}^j}{|n_{j}|}$ x $log_2 \frac{|C|}{CF_{ti}}$
+\item $w_{ij}^{Df-Class}$=$inner$-$weight_{ij}^{Df}$ $\times$ $inter$-$weight_{ij}^{class}$
+%=$\frac{DF_{ti}^j}{|d_{j}|}$ x $log_2 \frac{|C|}{CF_{ti}}$
+\item $w_{ij}^{Tf-Doc}$=$inner$-$weight_{ij}^{Tf}$ $\times$ $inter$-$weight_{ij}^{doc}$
+%=$ \frac{TF_{ti}^j}{|n_{j}|}$ x $log_2 \frac{|d|-|d \in{C_j}|+1}{|d:t_i|-|d:t_i \in{C_j}|+1}$
+\item $w_{ij}^{Df-Doc}$=$inner$-$weight_{ij}^{Df}$ $\times$ $inter$-$weight_{ij}^{doc}$
+%=$\frac{DF_{ti}^j}{|d_{j}|}$ x $log_2 \frac{|d|-|d \in{C_j}|+1}{|d:t_i|-|d:t_i \in{C_j}|+1}$
+\end{itemize}
+Nous allons aussi mettre en place une combinaison de ces mesures dépendante de deux paramètres $\alpha$ et $\beta$:
+\[ w_{ij}^{ \alpha \beta}=(\alpha \times innerweight_{ij}^{Tf} + (1-\alpha)\times innerweight_{ij}^{Df} )\times(\beta \times interweight_{ij}^{class} + (1-\beta) \times interweight_{ij}^{doc} )\]
+On remarque qu'en faisant varier $\alpha$ et $\beta$, on peut retrouver les quatre premières formules.
 %-----------------------------------------------------------
 
 
@@ -197,7 +254,8 @@ Le tableau \ref{NBTER} présente les résultats de classifications correctes att
 //TODO
 
 %-----------------------------------------------------------
-
+\bibliographystyle{plain}
+\bibliography{biblio}
 \end{document}
 
 %%% Local Variables:

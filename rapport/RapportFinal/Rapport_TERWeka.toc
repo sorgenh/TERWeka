@@ -4,6 +4,7 @@
 \contentsline {subsection}{\numberline {2.1}L'API Weka/Sources avec Eclipse}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}L'utilisation des classes}{2}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Ajout d'un algorithme dans Weka}{2}{subsection.2.3}
+<<<<<<< HEAD
 \contentsline {section}{\numberline {3}Des nouvelles m\IeC {\'e}thodes de classification}{3}{section.3}
 \contentsline {subsection}{\numberline {3.1}Pond\IeC {\'e}rations intra-classes}{3}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Pond\IeC {\'e}rations inter-classes}{3}{subsection.3.2}
@@ -18,3 +19,19 @@
 \contentsline {subsection}{\numberline {5.3}R\IeC {\'e}sultats}{4}{subsection.5.3}
 \contentsline {section}{\numberline {6}Discussion et Conclusion }{5}{section.6}
 \contentsline {section}{\numberline {7}Sources}{5}{section.7}
+=======
+\contentsline {section}{\numberline {3}De nouvelles m\IeC {\'e}thodes de classification}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Pond\IeC {\'e}rations intra-classe}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Pond\IeC {\'e}rations inter-classe}{3}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Algorithmes de classifications}{4}{subsection.3.3}
+\contentsline {section}{\numberline {4}D\IeC {\'e}veloppement des diff\IeC {\'e}rentes classes}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}M\IeC {\'e}thodologie}{4}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Extension de Naive Bayes Multinomial}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Class-Feature-Centroide}{4}{subsection.4.3}
+\contentsline {section}{\numberline {5}Int\IeC {\'e}gration et tests}{4}{section.5}
+\contentsline {subsection}{\numberline {5.1}Int\IeC {\'e}gration dans l'\IeC {\'e}cosyst\IeC {\`e}me de Weka}{4}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Tests}{5}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}R\IeC {\'e}sultats}{5}{subsection.5.3}
+\contentsline {section}{\numberline {6}Discussion et Conclusion }{5}{section.6}
+\contentsline {section}{\numberline {7}Sources}{6}{section.7}
+>>>>>>> 9e0e1be9fdd1d3539de8297dd0474a48aaa6d387
