@@ -7,7 +7,7 @@
 \beamer@subsectionintoc {4}{1}{Pond\IeC {\'e}rations intra-classe}{10}{0}{4}
 \beamer@subsectionintoc {4}{2}{Pond\IeC {\'e}rations inter-classe}{13}{0}{4}
 \beamer@subsectionintoc {4}{3}{Algorithmes de classifications}{16}{0}{4}
-\beamer@sectionintoc {5}{Algorithmes de classifications}{18}{0}{5}
+\beamer@sectionintoc {5}{D\IeC {\'e}veloppement des algorithmes de classifications}{18}{0}{5}
 \beamer@subsectionintoc {5}{1}{NBMultinomialTER}{19}{0}{5}
 \beamer@subsectionintoc {5}{2}{CFCTERab}{20}{0}{5}
 \beamer@sectionintoc {6}{Int\IeC {\'e}gration et r\IeC {\'e}sultats}{21}{0}{6}
