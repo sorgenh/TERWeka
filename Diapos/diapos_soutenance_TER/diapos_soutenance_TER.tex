@@ -1,0 +1,121 @@
+\documentclass[12pt]{beamer}
+\usetheme{JuanLesPins}
+
+
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\author{ALIJATE Mehdi -  NEGROS Hadrien- TURKI Batoul}
+\title{TER :  Mini présentation de notre avancement}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+%\institute{} 
+%\date{} 
+%\subject{} 
+\begin{document}
+
+\begin{frame}
+\titlepage 
+
+
+\end{frame}
+
+%\begin{frame}
+%\begin{abstract}
+%\frametitle{Abstract}
+%\begin{center}
+%Ce sujet vise à intégrer et à optimiser des %algorithmes de classifications supervisées de %documents dans la suite logiciel WEKA. Ces %algorithmes sont issus de travaux de recherche %menés récemment au sein du LIRMM.
+%\end{center}
+%\end{abstract}
+%\end{frame}
+
+\begin{frame}
+\tableofcontents
+\frametitle{Sommaire}
+
+
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+\begin{block}{Introduction}
+\begin{itemize}
+\item Ce TER vise à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA 
+\item Intégrant de nouvelles pondérations adaptées
+\item Se basant sur un nouveau modèle de classification à partir d’un faible nombre de document
+\end{itemize} 
+\end{block}
+
+\begin{block}{Aujourd'hui}
+\begin{itemize}
+\item 
+\item 
+\item 
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\section{Organisation}
+\begin{frame}
+\begin{itemize}
+	\item Quatre réunions
+	\item Un outil collaboratif pour la gestion du projet : Github
+	\item Mises au point régulières
+\end{itemize}
+\end{frame}
+
+\section{Travail effectué}
+
+\begin{frame}
+
+\begin{itemize}
+\item Exploration de l'architecture de WEKA
+\item Etude de NaiveBayesMultinomial
+\item Reflexion et étude de la nouvelle méthode de pondérations
+\item Mise en place d'un plan de travail : Implémentation
+\end{itemize}
+\begin{block}{Résultat}
+\begin{itemize}
+\item Nous avons réussi à implémenter une version 1 (et tester en partie) le nouvel algorithme
+\item Nous avons réussi à l'intégrer à WEKA et le faire tourner sur un ARFF.
+\end{itemize}
+\end{block}
+
+\end{frame}
+\section{Démonstration}
+
+\begin{frame}
+
+\begin{center}
+\huge Démonstration
+
+\end{center}
+\end{frame}
+\section{Next step}
+\begin{frame}
+
+\begin{itemize}
+\item Optimisation de l'algorithme
+\item Menu déroulant pour le choix de la pondération
+\item Documentation
+\end{itemize}
+\end{frame}
+
+\section{Discussion}
+\begin{frame}
+
+\begin{itemize}
+\item Cas particulier bloquant : Initialisation du nombre de documents, sinon cela renvoie une exception
+\item Pistes pour prochaines étapes
+\end{itemize}
+
+
+\end{frame}
+
+
+\end{document}
