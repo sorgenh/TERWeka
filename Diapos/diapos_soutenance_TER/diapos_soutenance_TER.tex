@@ -1,7 +1,20 @@
 \documentclass[12pt]{beamer}
-\usetheme{JuanLesPins}
+\usetheme{Madrid}
 
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
 
+  \begin{beamercolorbox}[wd=.67\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8x]{inputenc}
@@ -14,10 +27,12 @@
 }
 %\setbeamercovered{transparent} 
 %\setbeamertemplate{navigation symbols}{} 
-%\logo{logo_um2} 
+
 \institute{Université Montpellier 2 - LIRMM} 
 %\date{} 
 %\subject{} 
+
+
 \begin{document}
 
 \begin{frame}
@@ -26,6 +41,7 @@
 
 \begin{frame}
 \begin{abstract}
+
 \frametitle{Abstract}
 \begin{center}
 Ce sujet vise à intégrer et à optimiser des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA. Ces algorithmes sont issus de travaux de recherche menés récemment au sein du LIRMM.
