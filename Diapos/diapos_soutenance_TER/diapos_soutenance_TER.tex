@@ -33,11 +33,24 @@
 %\subject{} 
 
 
+
+
 \begin{document}
+
+
 
 \begin{frame}
 \titlepage 
 \end{frame}
+
+\AtBeginSection[]{
+ \begin{frame}
+    \frametitle{Sommaire}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide/show/hide]
+  \end{frame}
+
+} 
+
 
 \begin{frame}
 \begin{abstract}
@@ -244,10 +257,10 @@ Nous avons aussi mis en place une combinaison de ces mesures dépendantes de deu
 \end{frame}
 
 
-
+\section{Développement des algorithmes de classifications}
 \begin{frame}
 \frametitle{Développement}
-\section{Développement des algorithmes de classifications}
+
 \begin{description}
 \item[buildClassifier()]  C'est la méthode dans laquelle est calculé le tableau des $w_{ij}$ (La probabilité d'un mot par rapport à une classe).
 \item[distributionForInstance(Instance)] Renvoie les probabilités du document (Instance) en entrée pour chacune des classes du corpus.
@@ -288,20 +301,20 @@ Nous avons aussi mis en place une combinaison de ces mesures dépendantes de deu
 
 
 
-
+\section{Intégration et résultats}
 \begin{frame}
 \frametitle{Intégration}
-\section{Intégration et résultats}
+
 \begin{center}
 \includegraphics[width=0.80\textwidth]{wekaAlgos}~\\[1cm]  
 \end{center}
 
 
 \end{frame}
-
+\subsection{Intégration}
 \begin{frame}
 \frametitle{Jeu de données}
-\subsection{Intégration}
+
 Nos jeu de données : 
 \begin{itemize}
 \item \texttt{\textbf{test3classes.arff}} : \textbf{150} instances et \textbf{41} attributs (une selection d'attributs a été faite dessus), avec \textbf{3} classes : Policier, Fantastique, Comédie.
@@ -314,10 +327,10 @@ Nos jeu de données :
 
 
 
-
+\subsection{Résultats des tests}
 \begin{frame}
 \frametitle{Résultats des tests : NaiveBayesMultinomialTER}
-\subsection{Résultats des tests}
+
 
 \begin{table}
 \centering
@@ -379,8 +392,6 @@ Implémenter de nouvelles métriques pour CFC (exemple : Distance de Jaccard)
 \end{block}
 
 \end{frame}
-\section{Démonstration}
-
 \begin{frame}
 
 \begin{center}
@@ -388,5 +399,8 @@ Implémenter de nouvelles métriques pour CFC (exemple : Distance de Jaccard)
 
 \end{center}
 \end{frame}
+\section{Démonstration}
+
+
 
 \end{document}
