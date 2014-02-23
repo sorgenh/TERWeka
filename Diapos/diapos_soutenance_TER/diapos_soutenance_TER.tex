@@ -38,13 +38,27 @@
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6837ff9d819b45eb2265beb68016fdd7f0f52829
 \begin{document}
+
+
 
 \begin{frame}
 \titlepage 
 \end{frame}
+
+\AtBeginSection[]{
+ \begin{frame}
+    \frametitle{Sommaire}
+    \tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide/show/hide]
+  \end{frame}
+
+} 
+
 
 \begin{frame}
 \begin{abstract}
@@ -73,10 +87,26 @@ Ce sujet vise à intégrer et à optimiser des algorithmes de classifications su
 \begin{block}{Introduction}
 \begin{itemize}
 \item Ce TER vise à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA 
-\item Intégrant de nouvelles pondérations adaptées
-\item Se basant sur un nouveau modèle de classification à partir d’un faible nombre de documents
+\item Intégrant de nouvelles solutions adaptées aux faibles quantités de données textuelles.
+\item Se basant sur de nouvelles pondérations.
 \end{itemize} 
 \end{block}
+\end{frame}
+\begin{frame}
+\frametitle{La classification}
+La classification est le processus visant à associer un document à la classe le représentant le mieux.
+\begin{block}{Exemple}
+Classer des résumés de films selon leur genre. (Policier, Comédie, etc...)
+\end{block}
+\begin{block}{Vocabulaire}
+\begin{description}
+\item[Attribut] Ou \textbf{terme unique} est un élément d'un document.
+\item[Document] Un ensemble d'attributs (ex: un résumé)
+\item[Classe] Un ensemble de documents liés entre eux. (ex: genre cinématographique)
+\end{description}
+\end{block}
+
+
 \end{frame}
 
 \begin{frame}
@@ -127,10 +157,18 @@ Ce sujet vise à intégrer et à optimiser des algorithmes de classifications su
 \begin{itemize}
 \item Différentes pondérations pour la construction des nouveaux classifieurs
 \begin{enumerate}
-\item Les mesures intra-classe inspirées du TF-IDF
-\item Les mesures inter-classe développées au LIRMM
+\item Des mesures intra-classe.
+\item Des mesures inter-classe.
 \end{enumerate}
 \end{itemize}
+Ces mesures sont inspirées du TF-IDF et ont étés développées au LIRMM.\\
+Elles sont définies dans l'article:
+\begin{center}
+De nouvelles pondérations adaptées à la classification de petits volumes de données textuelles.\\
+De \textit{M. Roche, F. Bouillot, P. Poncelet}\\
+EGC 2014
+\end{center}
+
 \end{frame}
 
 \begin{frame}
@@ -177,7 +215,7 @@ Cette mesure dépend du nombre d'occurrences du terme dans la classe.
 \begin{itemize}
 \item Les pondérations inter-classes utilisent des valeurs calculées à partir de l'ensemble du corpus.
 
-\item Depuis les classes extérieures à celle qui nous intéresse
+\item Depuis les classes extérieures à celle qui nous intéresse.
 \end{itemize}
 \end{frame}
 
@@ -194,36 +232,30 @@ Avec:
 	\item $C_{ti}$: Nombre de classes contenant le terme $t_i$
   \end{itemize}
 \end{frame}
-\begin{frame}
 \subsubsection*{inter-classe document}
-\frametitle{Inter-classe document}
-Cette mesure dépend du nombre de documents extérieurs à la classe contenant le terme.
-\end{frame}
+
 \begin{frame}
 \subsubsection*{inter-classe document}
 \frametitle{Formule inter-classe document}
+Cette mesure dépend du nombre de documents extérieurs à la classe contenant le terme.
  \begin{small}
  
 
-\[ inter\mbox{-}weight_{ij}^{doc} = log_2 \frac{|d \notin{C_j}|+1}{|d:t_i \notin{C_j}|+1}= log_2 \frac{|d|-|d \in{C_j}|+1}{|d:t_i|-|d:t_i \in{C_j}|+1}\]
+\[ inter\mbox{-}weight_{ij}^{doc} = log_2 \frac{|d \notin{C_j}|+1}{|d:t_i \notin{C_j}|+1}\]
  \end{small}
  Avec:
- \begin{tiny}
+ \begin{small}
 \begin{itemize}
 	\item $|d \notin  {C_j}|$: Nombre de documents n'appartenant pas à la classe $C_j$
 	\item $|d:t_i \notin {C_j}|$: Nombre de documents n'appartenant pas à la classe $C_j$ qui contient $t_i$ 
-	\item $|d|$: Nombre de documents dans l'ensemble des classes
-	\item $|d \in  {C_j}|$: Nombre de documents de la classe $C_j$
-	\item $|d:t_i|$: Nombre de documents dans l'ensemble des classes contenant le terme $t_i$ 
-	\item $|d:t_i \in {C_j}|$: Nombre de documents de la classe $C_j$ qui contiennent $t_i$ 
 	\item En ajoutant 1, permet de prévenir le cas où $t_i$ est uniquement utilisé dans $C_j$ (quand $|d:t_i \notin{C_j}|={|d:t_i|-|d:t_i \in{C_j}|} = 0$)
   \end{itemize}
- \end{tiny}
+ \end{small}
 \end{frame}  
-
+\subsection{Algorithmes de classifications}
 \begin{frame}
 \frametitle{Algorithmes de classifications}
-\subsection{Algorithmes de classifications}
+
 \begin{itemize}
 \item Nous avons implémenté un classifieur \textit{Naive Bayes} et \textit{Class-Feature-Centroid}. 
 \item Pour calculer la probabilité $w_{ij}$ d'un terme $i$ dans une classe $j$, nous avons combiné les différentes pondérations de 4 façons:
@@ -254,10 +286,10 @@ Nous avons aussi mis en place une combinaison de ces mesures dépendantes de deu
 \end{frame}
 
 
-
+\section{Développement des algorithmes de classifications}
 \begin{frame}
 \frametitle{Développement}
-\section{Développement des algorithmes de classifications}
+
 \begin{description}
 \item[buildClassifier()]  C'est la méthode dans laquelle est calculé le tableau des $w_{ij}$ (La probabilité d'un mot par rapport à une classe).
 \item[distributionForInstance(Instance)] Renvoie les probabilités du document (Instance) en entrée pour chacune des classes du corpus.
@@ -268,10 +300,10 @@ Nous avons aussi mis en place une combinaison de ces mesures dépendantes de deu
 
 
 
-
-\begin{frame}
-\frametitle{NaiveBayesMulinomialTER}
 \subsection{NBMultinomialTER}
+\begin{frame}
+\frametitle{NaiveBayesMultinomialTER}
+
 \begin{description}
 \item[Version 1 : ]  implémentant les quatre pondérations.
 \item[Version 2 : ] paramètrable avec $\alpha$ et $\beta$
@@ -298,10 +330,11 @@ Nous avons aussi mis en place une combinaison de ces mesures dépendantes de deu
 
 
 
-
+\section{Intégration et résultats}
+\subsection{Intégration}
 \begin{frame}
 \frametitle{Intégration}
-\section{Intégration et résultats}
+
 \begin{center}
 \includegraphics[width=0.80\textwidth]{wekaAlgos}~\\[1cm]  
 \end{center}
@@ -309,12 +342,22 @@ Nous avons aussi mis en place une combinaison de ces mesures dépendantes de deu
 
 \end{frame}
 
+
 \begin{frame}
-\frametitle{Jeu de données}
-\subsection{Intégration}
-Nos jeu de données : 
+\frametitle{Tests}
+Classification de résumés de films.
+\begin{center}
+\includegraphics[width=0.70\textwidth]{vc}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Jeux de données}
+
+Nos jeux de données : 
 \begin{itemize}
-\item \texttt{\textbf{test3classes.arff}} : \textbf{150} instances et \textbf{41} attributs (une selection d'attributs a été faite dessus), avec \textbf{3} classes : Policier, Fantastique, Comédie.
+\item \texttt{\textbf{test3classes.arff}} : \textbf{150} instances et \textbf{41} attributs (une selection d'attributs \textbf{SubsetEval} a été faite dessus), avec \textbf{3} classes : Policier, Fantastique, Comédie.
 \item \texttt{\textbf{test5classes.arff}} : \textbf{248} instances et \textbf{5082} attributs au complet (sans selection d'attributs), avec \textbf{5} classes : Thriller, Western, Guerre, Policier, Sciences.
 \end{itemize}
 
@@ -324,10 +367,10 @@ Nos jeu de données :
 
 
 
-
+\subsection{Résultats des tests}
 \begin{frame}
 \frametitle{Résultats des tests : NaiveBayesMultinomialTER}
-\subsection{Résultats des tests}
+
 
 \begin{table}
 \centering
@@ -378,9 +421,10 @@ Expérimentations avec différentes valeurs de $\alpha$  \ et $\beta$ \  pour NB
 
 \section{Conclusion}
 \begin{frame}
+\frametitle{Conclusion}
 Ce TER nous a permis de :
 \begin{itemize}
-\item Prendre en main de Weka 
+\item Prendre en main  Weka 
 \item Comprendre les nouvelles mesures de classification
 \item Intégrer les algorithmes dans l’écosystème Weka 
 \end{itemize}
@@ -389,8 +433,6 @@ Implémenter de nouvelles métriques pour CFC (exemple : Distance de Jaccard)
 \end{block}
 
 \end{frame}
-\section{Démonstration}
-
 \begin{frame}
 
 \begin{center}
@@ -398,5 +440,8 @@ Implémenter de nouvelles métriques pour CFC (exemple : Distance de Jaccard)
 
 \end{center}
 \end{frame}
+\section{Démonstration}
+
+
 
 \end{document}
