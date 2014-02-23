@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.5.4)  23 FEB 2014 15:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.2)  23 FEB 2014 16:51
 entering extended mode
 **diapos_soutenance_TER.tex
 
@@ -8,24 +8,24 @@ LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
 ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
  lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
 ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamer.cls
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasercs.st
 y
-Package: beamerbasercs 2013/01/04 (rcs-revision 9a97a4eee358)
+Package: beamerbasercs 2013/12/25 (rcs-revision 31cc758a62ae)
 )
-Document Class: beamer 2013/01/04 3.26 A class for typesetting presentations (r
-cs-revision e81e0c94bcc6)
+Document Class: beamer 2013/12/02 3.33 A class for typesetting presentations (r
+cs-revision 332bfd3ce558)
 
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasemodes.
 sty
-Package: beamerbasemodes 2012/04/15 (rcs-revision cc6557182d97)
+Package: beamerbasemodes 2013/09/03 (rcs-revision 768f2d98ca64)
 \beamer@tempbox=\box26
 \beamer@tempcount=\count79
 \c@beamerpauses=\count80
@@ -87,7 +87,7 @@ Package ifpdf Info: pdfTeX in PDF mode is detected.
 
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaseoption
 s.sty
-Package: beamerbaseoptions 2010/04/27 (rcs-revision 982469101dd6)
+Package: beamerbaseoptions 2013/03/10 (rcs-revision 47431932db0d)
  ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
@@ -371,6 +371,9 @@ Package: xxcolor 2003/10/24 ver 0.1
 \XC@nummixins=\count116
 \XC@countmixins=\count117
 )
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -413,7 +416,7 @@ Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
 Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
@@ -447,9 +450,9 @@ Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count121
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+(C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\url\url.sty
 \Urlmuskip=\muskip10
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen162
@@ -494,7 +497,7 @@ Package: beamerbasecompatibility 2012/05/01  (rcs-revision 67c48b3b652d)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasefont.s
 ty
-Package: beamerbasefont 2012/09/19  (rcs-revision 733629cd0c6c)
+Package: beamerbasefont 2013/10/18  (rcs-revision 72f39e01808a)
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
@@ -505,6 +508,12 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\sansmathaccent\sansmathaccen
+t.sty
+Package: sansmathaccent 2013/03/28
+ (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\filehook\filehook.sty
+Package: filehook 2011/10/12 v0.5d Hooks for input files
 )))
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasetransl
 ator.sty
@@ -518,7 +527,7 @@ Package: translator 2010/06/12 ver 1.10
 lator-language-mappings.tex)))
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasemisc.s
 ty
-Package: beamerbasemisc 2012/02/24  (rcs-revision 2ff5461be705)
+Package: beamerbasemisc 2013/09/03  (rcs-revision a55719c41d85)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasetwoscr
 eens.sty
@@ -526,7 +535,7 @@ Package: beamerbasetwoscreens 2010/05/01  (rcs-revision efa082c6111d)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaseoverla
 y.sty
-Package: beamerbaseoverlay 2012/11/11  (rcs-revision 6afbc49b1109)
+Package: beamerbaseoverlay 2013/12/25  (rcs-revision f6bd5e3805da)
 \beamer@argscount=\count126
 \beamer@lastskipcover=\skip44
 \beamer@trivlistdepth=\count127
@@ -537,7 +546,7 @@ Package: beamerbasetitle 2010/09/21  (rcs-revision f0446ed0b6ae)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasesectio
 n.sty
-Package: beamerbasesection 2013/01/04  (rcs-revision 54309ceef997)
+Package: beamerbasesection 2013/06/07  (rcs-revision 60b9fe0f342f)
 \c@lecture=\count128
 \c@part=\count129
 \c@section=\count130
@@ -546,7 +555,7 @@ Package: beamerbasesection 2013/01/04  (rcs-revision 54309ceef997)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaseframe.
 sty
-Package: beamerbaseframe 2012/12/26  (rcs-revision 1443917db2cf)
+Package: beamerbaseframe 2013/10/02  (rcs-revision cdc8e9a3aaac)
 \beamer@framebox=\box40
 \beamer@frametitlebox=\box41
 \beamer@zoombox=\box42
@@ -578,7 +587,7 @@ Package: beamerbaseframesize 2011/09/12  (rcs-revision 70f9d8411e54)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaseframec
 omponents.sty
-Package: beamerbaseframecomponents 2012/09/13  (rcs-revision dcd846607320)
+Package: beamerbaseframecomponents 2013/10/18  (rcs-revision 5cf6c5555a45)
 \beamer@footins=\box44
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasecolor.
@@ -592,7 +601,7 @@ Package: beamerbasenotes 2012/12/19  (rcs-revision 1686da3db3c9)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasetoc.st
 y
-Package: beamerbasetoc 2012/10/02  (rcs-revision 5ed0f4010e8a)
+Package: beamerbasetoc 2013/05/23  (rcs-revision 0fdf5bc43be8)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasetempla
 tes.sty
@@ -601,7 +610,7 @@ Package: beamerbasetemplates 2010/05/01  (rcs-revision efa082c6111d)
 
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaseauxtem
 plates.sty
-Package: beamerbaseauxtemplates 2012/05/01  (rcs-revision 67c48b3b652d)
+Package: beamerbaseauxtemplates 2013/09/04  (rcs-revision 4ac715c499d0)
 
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaseboxes.
 sty
@@ -620,7 +629,7 @@ Package: beamerbaseboxes 2012/05/13  (rcs-revision 56972908a390)
 ))
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbaselocals
 tructure.sty
-Package: beamerbaselocalstructure 2012/11/13  (rcs-revision ddfba79dac19)
+Package: beamerbaselocalstructure 2013/09/04  (rcs-revision 4ac715c499d0)
  ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
 Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
 \@enLab=\toks28
@@ -632,7 +641,7 @@ Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasenaviga
 tion.sty
-Package: beamerbasenavigation 2012/04/03  (rcs-revision 42a0f21a412d)
+Package: beamerbasenavigation 2013/10/05  (rcs-revision 62be157fe783)
 \beamer@section@min@dim=\dimen173
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\beamerbasetheore
@@ -728,7 +737,7 @@ Package: beamercolorthemedefault 2012/12/19  (rcs-revision 1686da3db3c9)
 )
 (C:\Users\Had\AppData\Roaming\MiKTeX\2.9\tex\latex\beamer\base\themes\inner\bea
 merinnerthemedefault.sty
-Package: beamerinnerthemedefault 2012/05/01  (rcs-revision 67c48b3b652d)
+Package: beamerinnerthemedefault 2013/10/15  (rcs-revision 65cb471f9634)
 \beamer@dima=\dimen183
 \beamer@dimb=\dimen184
 )
@@ -947,10 +956,14 @@ LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 38.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> OT1/cmss/bx/n on input line 38.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 38.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 38.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/lmr/m/n on input line 38.
+(Font)                  OT1/lmss/m/n --> T1/lmr/m/n on input line 38.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 38.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/lmr/bx/n --> T1/lmss/bx/n on input line 38.
@@ -976,7 +989,7 @@ LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  T1/lmss/m/it --> T1/lmss/bx/it on input line 38.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/lmr/bx/n on input line 38.
+(Font)                  OT1/lmss/bx/n --> T1/lmr/bx/n on input line 38.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 (Font)                  T1/lmss/bx/n --> T1/lmss/bx/n on input line 38.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
@@ -1078,12 +1091,6 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [6
 
 ]
-(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
-enance_TER.toc)
-Overfull \vbox (24.37424pt too high) detected at line 97
- []
-
-
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1091,6 +1098,12 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [7
 
 ]
+(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
+enance_TER.toc)
+Overfull \vbox (24.37424pt too high) detected at line 113
+ []
+
+
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1098,12 +1111,6 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [8
 
 ]
-(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
-enance_TER.toc)
-Overfull \vbox (24.37424pt too high) detected at line 107
- []
-
-
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1111,8 +1118,11 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [9
 
 ]
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <12> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 124.
+(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
+enance_TER.toc)
+Overfull \vbox (24.37424pt too high) detected at line 123
+ []
+
 
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
@@ -1121,11 +1131,8 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [10
 
 ]
-(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
-enance_TER.toc)
-Overfull \vbox (67.87424pt too high) detected at line 126
- []
-
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <12> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 140.
 
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
@@ -1134,6 +1141,12 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [11
 
 ]
+(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
+enance_TER.toc)
+Overfull \vbox (67.87424pt too high) detected at line 142
+ []
+
+
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1148,44 +1161,6 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [13
 
 ]
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 160.
-
- ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 160
-.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 160
-.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 160.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 160.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 160.
-LaTeX Font Info:    Try loading font information for U+msa on input line 160.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 160.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 160.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 160.
-
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1193,6 +1168,50 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [14
 
 ]
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 184
+.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmss.fd"
+File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 184.
+
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
+File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 184
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
+File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 184
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd"
+File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 184.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 184.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 184.
+LaTeX Font Info:    Try loading font information for U+msa on input line 184.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 184.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 184.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 184.
+
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1222,13 +1241,9 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 225.
+(Font)              <10.95> on input line 243.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 225.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 225.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 225.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 243.
 
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
@@ -1245,17 +1260,17 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 257.
+(Font)              <14.4> on input line 275.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 257.
+(Font)              <10> on input line 275.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 257.
+(Font)              <7> on input line 275.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 257.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 275.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 257.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 275.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 257.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 275.
 
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
@@ -1266,7 +1281,7 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 ]
 (C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
 enance_TER.toc)
-Overfull \vbox (53.37424pt too high) detected at line 260
+Overfull \vbox (53.37424pt too high) detected at line 278
  []
 
 
@@ -1300,7 +1315,7 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 ]
 (C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
 enance_TER.toc)
-Overfull \vbox (53.37424pt too high) detected at line 304
+Overfull \vbox (53.37424pt too high) detected at line 322
  []
 
 
@@ -1310,13 +1325,13 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 
 [26
 
-] <wekaAlgos.png, id=869, 602.25pt x 449.42906pt>
+] <wekaAlgos.png, id=865, 602.25pt x 449.42906pt>
 File: wekaAlgos.png Graphic file (type png)
  <use wekaAlgos.png>
-Package pdftex.def Info: wekaAlgos.png used on input line 313.
+Package pdftex.def Info: wekaAlgos.png used on input line 332.
 (pdftex.def)             Requested size: 272.55751pt x 203.40015pt.
 
-Overfull \vbox (11.10411pt too high) detected at line 313
+Overfull \vbox (11.10411pt too high) detected at line 332
  []
 
 
@@ -1327,14 +1342,11 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [27
 
  <C:/Users/Had/Documents/GitHub/TERWeka/Diapos/diapos_soutenance_TER/wekaAlgos.
-png>]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 325.
-
- ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 325.
+png>] <vc.png, id=895, 498.36188pt x 417.81094pt>
+File: vc.png Graphic file (type png)
+ <use vc.png>
+Package pdftex.def Info: vc.png used on input line 342.
+(pdftex.def)             Requested size: 238.48587pt x 199.93494pt.
 
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
@@ -1342,7 +1354,15 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 
 [28
 
-]
+ <C:/Users/Had/Documents/GitHub/TERWeka/Diapos/diapos_soutenance_TER/vc.png>]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 354.
+
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 354.
+
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1350,11 +1370,6 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [29
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <17.28> on input line 378.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <17.28> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 378.
-
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1362,11 +1377,14 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [30
 
 ]
-(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
-enance_TER.toc)
-Overfull \vbox (24.37424pt too high) detected at line 382
- []
-
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 407.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 407.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <17.28> on input line 407.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <17.28> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 407.
 
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
@@ -1375,6 +1393,12 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [31
 
 ]
+(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
+enance_TER.toc)
+Overfull \vbox (24.37424pt too high) detected at line 411
+ []
+
+
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1389,12 +1413,6 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [33
 
 ]
-(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
-enance_TER.toc)
-Overfull \vbox (24.37424pt too high) detected at line 402
- []
-
-
 Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [][] 
  []
@@ -1402,49 +1420,59 @@ Overfull \hbox (1.21144pt too wide) has occurred while \output is active
 [34
 
 ]
+(C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
+enance_TER.toc)
+Overfull \vbox (24.37424pt too high) detected at line 432
+ []
+
+
+Overfull \hbox (1.21144pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[35
+
+]
 \tf@nav=\write6
 \tf@toc=\write7
 \tf@snm=\write8
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 406.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 406.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 436.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 436.
 
 (C:\Users\Had\Documents\GitHub\TERWeka\Diapos\diapos_soutenance_TER\diapos_sout
 enance_TER.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 406.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 406.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 436.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 436.
 Package rerunfilecheck Info: File `diapos_soutenance_TER.out' has not changed.
-(rerunfilecheck)             Checksum: 0C07622A0BBB2B576F8220F51E624ED7;987.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 406.
+(rerunfilecheck)             Checksum: C1400DE9C1167E1C3D637EC75A5B41AA;987.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 436.
  ) 
 Here is how much of TeX's memory you used:
- 17867 strings out of 493921
- 329156 string characters out of 3147289
- 406544 words of memory out of 3000000
- 20600 multiletter control sequences out of 15000+200000
- 79285 words of font info for 86 fonts, out of 3000000 for 9000
+ 18023 strings out of 493921
+ 332613 string characters out of 3147289
+ 408591 words of memory out of 3000000
+ 20738 multiletter control sequences out of 15000+200000
+ 101382 words of font info for 87 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 49i,16n,64p,428b,726s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,16n,64p,428b,726s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
-nc/dvips/lm/lm-mathsy.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
-lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/lm/lmss17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/lm/lmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso12.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/lm/lmsso8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/lm/lmtk10.pfb>
-Output written on diapos_soutenance_TER.pdf (34 pages, 557125 bytes).
+nc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm
+.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program 
+Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss17.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/l
+msso10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso12.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso8.pfb><C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtk10
+.pfb>
+Output written on diapos_soutenance_TER.pdf (35 pages, 768426 bytes).
 PDF statistics:
- 1175 PDF objects out of 1200 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 216 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1189 PDF objects out of 1200 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
