@@ -25,7 +25,9 @@
 
 \usepackage{graphicx}
 \usepackage{lmodern}
-\author{ALIJATE Mehdi -  NEGROS Hadrien- TURKI Batoul}
+\author{ALIJATE Mehdi -  NEGROS Hadrien- TURKI Batoul\\
+Encadrant : BOUILLOT Flavien}
+
 \title{TER :  Intégration et optimisation d’algorithmes de classifications supervisées pour Weka
 }
 %\setbeamercovered{transparent} 
@@ -33,7 +35,7 @@
 
 \institute{Université Montpellier 2 - LIRMM} 
 %\date{} 
-%\subject{} 
+
 
 
 
@@ -80,9 +82,9 @@ Ce sujet vise à intégrer et à optimiser des algorithmes de classifications su
 \frametitle{Introduction}
 \begin{block}{Introduction}
 \begin{itemize}
-\item Ce TER vise à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA 
-\item Intégrant de nouvelles solutions adaptées aux faibles quantités de données textuelles.
-\item Se basant sur de nouvelles pondérations.
+\item Ce TER vise à intégrer des algorithmes de classifications supervisées de documents dans la suite logiciel WEKA
+\item Intégrant de nouvelles solutions adaptées aux faibles quantités de données textuelles
+\item Se basant sur de nouvelles pondérations
 \end{itemize} 
 \end{block}
 \end{frame}
@@ -94,7 +96,7 @@ Classer des résumés de films selon leur genre. (Policier, Comédie, etc...)
 \end{block}
 \begin{block}{Vocabulaire}
 \begin{description}
-\item[Attribut] Ou \textbf{terme unique} est un élément d'un document.
+\item[Attribut] Ou \textbf{terme unique} est un élément d'un document
 \item[Document] Un ensemble d'attributs (ex: un résumé)
 \item[Classe] Un ensemble de documents liés entre eux. (ex: genre cinématographique)
 \end{description}
@@ -126,9 +128,9 @@ Classer des résumés de films selon leur genre. (Policier, Comédie, etc...)
 	\item Mises au point régulières
 \end{itemize}
 Diagramme de Gantt :
-\begin{center}
-\includegraphics[width=0.90\textwidth]{gantt}
-\end{center}
+
+\includegraphics[width=1.0\textwidth]{gantt}
+
 \end{frame}
 
 
@@ -413,6 +415,7 @@ Nos jeux de données :
 
 
 \begin{table}
+
 \centering
     \begin{tabular}{|l|c||c|}
     \hline
@@ -422,7 +425,7 @@ Nos jeux de données :
     \end{tabular}
 \end{table}
 \medskip
-Expérimentations avec $Nb^{Df-Class}$ et comparaison avec NBMultinomial
+Expérimentations avec $Nb^{Df-Class}$ (pourcentage de documents correctement classifiés) et comparaison avec NBMultinomial
 \end{frame}
 
 \begin{frame}
@@ -454,7 +457,7 @@ Expérimentations avec $Nb^{Df-Class}$ et comparaison avec NBMultinomial
 \end{table}
 \end{footnotesize}
 \medskip
-Expérimentations avec différentes valeurs de $\alpha$  \ et $\beta$ \  pour NBTER$\alpha\beta$ \ et CFCTER$\alpha\beta$ 
+Expérimentations avec différentes valeurs de $\alpha$  \ et $\beta$ \  pour NBTER$\alpha\beta$ \ et CFCTER$\alpha\beta$ (pourcentage de documents correctement classifiés)
 \end{frame}
 
 
